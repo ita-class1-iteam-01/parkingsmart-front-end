@@ -7,7 +7,7 @@ pipeline {
     stage('build') {
       steps {
         echo 'build'
-        bat 'npm install'
+        bat 'npm install --registry=https://registry.npm.taobao.org'
       }
     }
     stage('deploy') {
