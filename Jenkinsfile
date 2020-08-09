@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('clone'){
       steps{
-        git 'https://github.com/carrymaniac/parkingsmart-front-end'
+        git branch: 'dev', url:'https://github.com/carrymaniac/parkingsmart-front-end'
       }
     }
     stage('build') {
