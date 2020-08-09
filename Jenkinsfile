@@ -13,8 +13,8 @@ pipeline {
     stage('deploy') {
       steps {
         echo 'deploy'
-        bat "run.bat"
-        bat 'npm start'
+        bat 'npm run build'
+        bat 'copy build\\* D:\\nginx-1.18.0\\html\\'
       }
     }
   }
