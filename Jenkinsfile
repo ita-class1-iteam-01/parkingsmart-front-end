@@ -14,7 +14,7 @@ pipeline {
       steps {
         echo 'deploy'
         bat 'npm run build'
-        bat 'xcopy build D:\\nginx-1.18.0\\html\\'
+        bat 'xcopy build D:\\nginx-1.18.0\\html\\  /S  /E /Y'
       }
     }
   }
