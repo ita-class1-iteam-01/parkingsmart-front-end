@@ -15,7 +15,7 @@ pipeline {
       steps {
         echo 'deploy'
         bat 'xcopy build D:\\nginx-1.18.0\\html\\  /S  /E /Y'
-        bat 'D:\\nginx-1.18.0\\nginx.exe -s reload'
+        bat 'D:\\nginx-1.18.0\\nginx.exe -p D:\\nginx-1.18.0\\nginx.exe -s reload'
       }
     }
   }
