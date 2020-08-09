@@ -4,6 +4,11 @@ pipeline {
     JENKINS_NODE_COOKIE = "donotkillme"
   }
   stages {
+    stage('clone'){
+      steps{
+        git 'https://github.com/carrymaniac/parkingsmart-front-end'
+      }
+    }
     stage('build') {
       steps {
         echo 'build'
@@ -15,7 +20,7 @@ pipeline {
       steps {
         echo 'deploy'
         bat 'xcopy build D:\\nginx-1.19.1\\html\\  /S  /E /Y'
-        bat 'D:\\nginx-1.19.1\\nginx.exe -s reload'
+        // bat 'D:\\nginx-1.19.1\\nginx.exe -s reload'
       }
     }
   }
