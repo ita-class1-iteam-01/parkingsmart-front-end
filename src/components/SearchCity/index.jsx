@@ -12,11 +12,13 @@ class SearchCity extends React.Component {
 		};
 	}
 
-	onSelect = (e,data) => {
-		this.props.chooseDestination(data.body)
+	onSelect = (e, data) => {
+		this.props.chooseDestination(data.body);
 	};
 
 	onChange = (e) => {
+		if (e === undefined) 
+			this.props.resetDestination();
 		inputPrompt(this.props.city, e).then((res) => {
 			if (res.status === 200) {
 				this.setState({
@@ -32,14 +34,16 @@ class SearchCity extends React.Component {
 				<AutoComplete
 					style={{ width: 300 }}
 					onSelect={this.onSelect}
-                    onChange={this.onChange}
+					onChange={this.onChange}
 					placeholder="input destination"
 					allowClear={true}
 				>
-					{this.state.tips.filter((item)=> item.id.length !== 0).map((item) => {
-						return (<Option key={item.id} value={item.name} body={item}>
-							{item.name}
-                        </Option>);
+					{this.state.tips.filter((item) => item.id.length !== 0).map((item) => {
+						return (
+							<Option key={item.id} value={item.name} body={item}>
+								{item.name}
+							</Option>
+						);
 					})}
 				</AutoComplete>
 			</div>
