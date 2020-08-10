@@ -1,0 +1,9 @@
+{
+    "eslint.workingDirectories": [
+    
+    ],
+    "eslint.options": {
+        "configFile": ".eslintrc.js" // 改为你的文件路径
+    },
+    "eslint.nodePath": ".eslintrc.js"
+}
