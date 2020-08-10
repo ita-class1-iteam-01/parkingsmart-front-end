@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchCity from '../SearchCity';
-import CityPosition from '../CityPosition';
 import { SearchOutlined } from '@ant-design/icons';
 import { Space, Button, DatePicker } from 'antd';
 import moment from 'moment';
+import CityPosition from '../CityPosition';
+import SearchCity from '../SearchCity';
 
 const { RangePicker } = DatePicker;
 
@@ -15,24 +15,23 @@ class SearchBar extends React.Component {
 			isChooseDestination: false,
 			isChooseDate: false,
 			city: '',
-			destination: {},
 			currentHour: null
 		};
 	}
 
-	chooseDestination = (data) => {
+	chooseDestination = () => {
 		this.setState(
-			(state) => ({ destination: data, isChooseDestination: true }),
+			() => ({ isChooseDestination: true }),
 			() => {
 				this.isComplete();
 			}
 		);
-		console.log(data);
+		// console.log(data)
 	};
 
 	resetDestination = () => {
 		this.setState(
-			(state) => ({ isDisableSearchButton: true, isChooseDestination: false }),
+			() => ({ isDisableSearchButton: true, isChooseDestination: false }),
 			() => {
 				this.isComplete();
 			}
@@ -45,42 +44,17 @@ class SearchBar extends React.Component {
 		});
 	};
 
-	onChange = (dates, dateStrings) => {
+	onChange = (dates) => {
 		let status = true;
 		if (dates === null) status = false;
 
 		this.setState(
-			(state) => ({ isChooseDate: status }),
+			() => ({ isChooseDate: status }),
 			() => {
 				this.isComplete();
 			}
 		);
 	};
-
-	onOk = (data) => {
-		this.setState({ chooseDate: data });
-	};
-
-	isComplete() {
-		let status = true;
-		if (this.state.isChooseDate && this.state.isChooseDestination) 
-			status = false;
-		this.setState({
-			isDisableSearchButton: status
-		});
-	}
-
-	range(start, end) {
-		const result = [];
-		for (let i = start; i < end; i++) {
-			result.push(i);
-		}
-		return result;
-	}
-
-	disabledDate(current) {
-		return current < moment().startOf('days');
-	}
 
 	disabledRangeTime = (current, type) => {
 		if (current === null)
@@ -102,7 +76,28 @@ class SearchBar extends React.Component {
 				};
 			}
 		}
+		return null;
 	};
+
+	disabledDate = (current) => {
+		return current < moment().startOf('days');
+	};
+
+	range = (start, end) => {
+		const result = [];
+		for (let i = start; i < end; i++) {
+			result.push(i);
+		}
+		return result;
+	};
+
+	isComplete() {
+		let status = true;
+		if (this.state.isChooseDate && this.state.isChooseDestination) status = false;
+		this.setState({
+			isDisableSearchButton: status
+		});
+	}
 
 	render() {
 		return (

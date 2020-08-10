@@ -1,4 +1,4 @@
-export const options = [
+const options = [
     {
         value: 'guangdong',
         label: 'Guangdong',
@@ -80,4 +80,6 @@ export const options = [
             },
         ],
     },
-];
+]
+
+export default options
