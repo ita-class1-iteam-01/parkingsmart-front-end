@@ -8,30 +8,35 @@ class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            isDisableSearchButton: true,
-            city: '',
-            destination: {}
+			isDisableSearchButton: true,
+			city: '',
+			destination: {}
 		};
 	}
 
 	chooseDestination = (data) => {
-        this.setState({
-            destination: data
-        })
-    };
+		this.setState({
+			destination: data
+		});
+		console.log(data);
+	};
 
-    chooseCity = (data)=>{
-        this.setState({
-            city: data
-        })
-    }
+	chooseCity = (data) => {
+		this.setState({
+			city: data
+		});
+	};
 
 	render() {
 		return (
 			<Space>
-				<CityPosition chooseCity={this.chooseCity}/>
-				<SearchCity chooseDestination={this.chooseDestination} city={this.state.city}/>
-				<Button type="primary" icon={<SearchOutlined />} disabled={this.state.isDisableSearchButton}>
+				<CityPosition chooseCity={this.chooseCity} />
+				<SearchCity chooseDestination={this.chooseDestination} city={this.state.city} />
+				<Button
+					type="primary"
+					icon={<SearchOutlined />}
+					disabled={this.state.isDisableSearchButton}
+				>
 					Search
 				</Button>
 			</Space>
