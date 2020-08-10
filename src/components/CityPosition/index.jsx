@@ -3,53 +3,7 @@ import 'antd/dist/antd.css'
 import { Cascader, Spin } from 'antd'
 import { getLocation } from '../../api/api'
 import { ConvertPinyin } from '../../utils/ConvertPinyin'
-
-const options = [
-  {
-	  value: 'guangdong',
-	  label: 'Guangdong',
-	  children: [
-      {
-		  value: 'guangzhou',
-		  label: 'Guangzhou',
-      },
-      {
-		  value: 'shaoguan',
-		  label: 'Shaoguan',
-      },
-      {
-		  value: 'shenzhen',
-		  label: 'Shenzhen',
-      },
-      {
-		  value: 'zhuhai',
-		  label: 'Zhuhai',
-      },
-      {
-		  value: 'shantou',
-		  label: 'Shantou',
-      },
-      {
-		  value: 'fosan',
-		  label: 'Fosan',
-      },
-      {
-		  value: 'jiangmen',
-		  label: 'Jiangmen',
-      },
-	  ],
-  },
-  {
-	  value: 'guangxi',
-	  label: 'Guangxi',
-	  children: [
-      {
-		  value: 'nanning',
-		  label: 'Nanning',
-      },
-	  ],
-  },
-]
+import options from '../../constant/city'
 
 class CityPositon extends React.Component {
   constructor(props) {
@@ -59,33 +13,38 @@ class CityPositon extends React.Component {
     }
   }
 
-  componentDidMount() {
-    getLocation().then((res) => {
-      if (res.status === 200) {
-        this.setState({
-          city: ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).withUC,
-        })
-      }
-    })
-  }
+	componentDidMount() {
+		getLocation().then((res) => {
+			if (res.status === 200) {
+				this.setState({
+					city: ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).withUC
+				})
+        this.props.chooseCity(
+          ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).word)
+			}
+		})
+	}
 
   displayRender = (label) => label[label.length - 1]
 
-  render() {
-	const { city } = this.state
-    if (city === '') return <Spin />
+	onChange = (value) => {
+		this.props.chooseCity(value[1])
+	};
 
-    return (
-      <Cascader
-        options={options}
-        expandTrigger="hover"
-        defaultValue={[city]}
-        displayRender={this.displayRender}
-        allowClear={false}
-        onChange={this.onChange}
-      />
-    )
-  }
+	render() {
+		if (this.state.city === '') return <Spin />
+
+		return (
+  <Cascader
+    options={options}
+    expandTrigger="hover"
+    defaultValue={[ this.state.city ]}
+    displayRender={this.displayRender}
+    allowClear={false}
+    onChange={this.onChange}
+  />
+		)
+	}
 }
 
 export default CityPositon

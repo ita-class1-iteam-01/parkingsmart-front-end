@@ -12,22 +12,22 @@ class SearchCity extends React.Component {
     }
   }
 
-	onSelect = () => {
+	onSelect = (e,data) => {
+		this.props.chooseDestination(data.body)
 	};
 
 	onChange = (e) => {
-	  inputPrompt('zhuhai', e).then((res) => {
-	    if (res.status === 200) {
-	      this.setState({
-	        tips: res.data.tips,
-	      })
-	    }
-	  })
+		inputPrompt(this.props.city, e).then((res) => {
+			if (res.status === 200) {
+				this.setState({
+					tips: res.data.tips
+				})
+			}
+		})
 	};
 
 	render() {
-		const { tips } = this.state
-	  return (
+		return (
   <div>
     <AutoComplete
       style={{ width: 300 }}
@@ -36,14 +36,16 @@ class SearchCity extends React.Component {
       placeholder="input destination"
       allowClear
     >
-      {tips.map((item) => (
-        <Option key={item.id} value={item.name}>
-          {item.name}
-        </Option>
-      ))}
+      {this.state.tips.filter((item)=> item.id.length !== 0).map((item) => {
+						return (
+  <Option key={item.id} value={item.name} body={item}>
+    {item.name}
+  </Option>
+)
+					})}
     </AutoComplete>
   </div>
-	  )
+		)
 	}
 }
 
