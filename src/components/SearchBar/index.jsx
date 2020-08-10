@@ -46,8 +46,11 @@ class SearchBar extends React.Component {
 	};
 
 	onChange = (dates, dateStrings) => {
+		let status = true;
+		if (dates === null) status = false;
+
 		this.setState(
-			(state) => ({ isChooseDate: true }),
+			(state) => ({ isChooseDate: status }),
 			() => {
 				this.isComplete();
 			}
@@ -59,10 +62,12 @@ class SearchBar extends React.Component {
 	};
 
 	isComplete() {
-		if (this.state.isChooseDate && this.state.isChooseDestination)
-			this.setState({
-				isDisableSearchButton: false
-			});
+		let status = true;
+		if (this.state.isChooseDate && this.state.isChooseDestination) 
+			status = false;
+		this.setState({
+			isDisableSearchButton: status
+		});
 	}
 
 	range(start, end) {
@@ -78,6 +83,11 @@ class SearchBar extends React.Component {
 	}
 
 	disabledRangeTime = (current, type) => {
+		if (current === null)
+			return {
+				disabledHours: () => this.range(0, 24)
+			};
+
 		if (type === 'start' && current !== null) {
 			this.state.currentHour = current.hours();
 			return {
