@@ -7,7 +7,7 @@ const MapAxios = axios.create({
 });
 
 export const inputPrompt = (city,keyword) => {
-    return MapAxios.get(`/assistant/inputtips?key=${GaoDeUserKey}&keywords=${keyword}&city=${city}&datatype=all`);
+    return MapAxios.get(`/assistant/inputtips?key=${GaoDeUserKey}&keywords=${keyword}&city=${city}&datatype=all&citylimit=true`);
 }
 
 export const getLocation = () =>{
