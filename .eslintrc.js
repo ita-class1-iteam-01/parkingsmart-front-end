@@ -23,7 +23,9 @@ module.exports = {
     "semi": [1, 'never'],
     "max-len": [1, {code : 100}],
     "import/no-extraneous-dependencies": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "react/destructuring-assignment": 0,
+    "react/prop-types": 0
   },
   parser : "babel-eslint"
 }
