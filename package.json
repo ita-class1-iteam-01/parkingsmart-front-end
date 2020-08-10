@@ -18,10 +18,10 @@
     "lint-fix": "eslint --ext .jsx --ext .js . --fix",
     "eject": "react-scripts eject"
   },
-  "husky":{
-      "hooks":{
-        "pre-commit": "npm run lint"
-      }
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,8 +39,12 @@
     ]
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
+    "antd": "^4.5.3",
+    "axios": "^0.19.2",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
