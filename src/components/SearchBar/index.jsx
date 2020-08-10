@@ -1,28 +1,42 @@
 import React from 'react';
-import SearchCity from '../SearchCity'
-import CityPosition from '../CityPosition'
+import SearchCity from '../SearchCity';
+import CityPosition from '../CityPosition';
 import { SearchOutlined } from '@ant-design/icons';
-import { Space,Button } from 'antd';
+import { Space, Button } from 'antd';
 
-class SearchBar extends React.Component{
+class SearchBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+            isDisableSearchButton: true,
+            city: '',
+            destination: {}
+		};
+	}
 
-    constructor(props){
-        super(props)
-        this.state = {
-            isShowSearchButton: false
-        }
+	chooseDestination = (data) => {
+        this.setState({
+            destination: data
+        })
+    };
+
+    chooseCity = (data)=>{
+        this.setState({
+            city: data
+        })
     }
 
-    render(){
-        return (
-            <Space>
-                <CityPosition/>
-                <SearchCity/>
-                <Button type="primary" icon={<SearchOutlined />} >Search</Button>
-            </Space>
-        )
-    }
-
+	render() {
+		return (
+			<Space>
+				<CityPosition chooseCity={this.chooseCity}/>
+				<SearchCity chooseDestination={this.chooseDestination} city={this.state.city}/>
+				<Button type="primary" icon={<SearchOutlined />} disabled={this.state.isDisableSearchButton}>
+					Search
+				</Button>
+			</Space>
+		);
+	}
 }
 
-export default SearchBar
+export default SearchBar;

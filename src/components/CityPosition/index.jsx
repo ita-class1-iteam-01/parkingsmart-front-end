@@ -2,7 +2,8 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Cascader, Spin } from 'antd';
 import { getLocation } from '../../api/api';
-import {ConvertPinyin} from '../../utils/ConvertPinyin'
+import { ConvertPinyin } from '../../utils/ConvertPinyin';
+import { options } from '../../constant/city';
 
 class CityPositon extends React.Component {
 	constructor(props) {
@@ -14,17 +15,22 @@ class CityPositon extends React.Component {
 
 	componentDidMount() {
 		getLocation().then((res) => {
-            if(res.status === 200){
-                this.setState({
-                    city: ConvertPinyin(res.data.city.slice(0,res.data.city.length-1)).withUC
-                })
-            }
-        });
+			if (res.status === 200) {
+				this.setState({
+					city: ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).withUC
+				});
+				this.props.chooseCity(ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).word);
+			}
+		});
 	}
 
 	displayRender(label) {
 		return label[label.length - 1];
 	}
+
+	onChange = (value) => {
+		this.props.chooseCity(value[1]);
+	};
 
 	render() {
 		if (this.state.city === '') return <Spin />;
@@ -34,8 +40,8 @@ class CityPositon extends React.Component {
 				options={options}
 				expandTrigger="hover"
 				defaultValue={[ this.state.city ]}
-                displayRender={this.displayRender}
-                allowClear={false}
+				displayRender={this.displayRender}
+				allowClear={false}
 				onChange={this.onChange}
 			/>
 		);
@@ -43,52 +49,3 @@ class CityPositon extends React.Component {
 }
 
 export default CityPositon;
-
-
-
-const options = [
-	{
-		value: 'guangdong',
-		label: 'Guangdong',
-		children: [
-			{
-				value: 'guangzhou',
-				label: 'Guangzhou'
-			},
-			{
-				value: 'shaoguan',
-				label: 'Shaoguan'
-			},
-			{
-				value: 'shenzhen',
-				label: 'Shenzhen'
-			},
-			{
-				value: 'zhuhai',
-				label: 'Zhuhai'
-			},
-			{
-				value: 'shantou',
-				label: 'Shantou'
-			},
-			{
-				value: 'fosan',
-				label: 'Fosan'
-			},
-			{
-				value: 'jiangmen',
-				label: 'Jiangmen'
-			}
-		]
-	},
-	{
-		value: 'guangxi',
-		label: 'Guangxi',
-		children: [
-			{
-				value: 'nanning',
-				label: 'Nanning'
-			}
-		]
-	}
-];

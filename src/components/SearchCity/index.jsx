@@ -12,12 +12,12 @@ class SearchCity extends React.Component {
 		};
 	}
 
-	onSelect = (data) => {
-		console.log('onSelect', data);
+	onSelect = (e,data) => {
+		this.props.chooseDestination(data.body)
 	};
 
 	onChange = (e) => {
-		inputPrompt('zhuhai', e).then((res) => {
+		inputPrompt(this.props.city, e).then((res) => {
 			if (res.status === 200) {
 				this.setState({
 					tips: res.data.tips
@@ -37,7 +37,7 @@ class SearchCity extends React.Component {
 					allowClear={true}
 				>
 					{this.state.tips.map((item) => {
-						return (<Option key={item.id} value={item.name}>
+						return (<Option key={item.id} value={item.name} body={item}>
 							{item.name}
                         </Option>);
 					})}
