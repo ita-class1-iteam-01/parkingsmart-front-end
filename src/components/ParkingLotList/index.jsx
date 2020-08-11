@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Row, Col, Button, Empty, Descriptions } from 'antd'
+import "./ParkingLotList.css"
 
 const testParkingLotListData = [
     {
@@ -44,30 +45,28 @@ class ParkingLotList extends React.Component {
         if (this.state.parkinglots.length === 0) {
             Message = (
               <Empty
-                style={{fontSize: '25px', marginTop: '150px'}} 
+                className="empty"
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
               />
 )
         } else {
             Message = (
               <Row 
-                gutter={[16, 10]}
-                style={{marginTop: '20px', 
-                  marginLeft: '25%', 
-                  marginRight: '25%'
-                  }}
+                className="row"
+                gutter={[16, 10]} 
               >
                 {this.state.parkinglots.map((parkinglot) => {
                   return (
                     <Col
-                      span={8}
+                      span={6}
                     >
                       <Card  
                         hoverable 
                         style={{barground: '#ffffff', margin: '20px', textAlign: 'left'}}
+                        title={parkinglot.name}
                       >
-                        <Descriptions title={parkinglot.name}>
-                          <Descriptions.Item span={3} label="Capacity">
+                        <Descriptions>
+                          <Descriptions.Item span={3} label="Remain Park Spaces">
                             {parkinglot.remain}
                           </Descriptions.Item>                  
                           <Descriptions.Item span={3} label="Price">
@@ -75,13 +74,14 @@ class ParkingLotList extends React.Component {
                             ￥/h
                           </Descriptions.Item>
                         </Descriptions>
-                        <Button 
-                          type="primary"
-                          shape="round" 
-                          style={{marginLeft: '130px'}}
-                        >
-                          Log Info
-                        </Button>
+                        <div style={{display:"flex",justifyContent:"center"}}>
+                          <Button 
+                            type="primary"
+                            shape="round"
+                          >
+                            Log Info
+                          </Button>
+                        </div>
                       </Card>
                     </Col>
                 )
