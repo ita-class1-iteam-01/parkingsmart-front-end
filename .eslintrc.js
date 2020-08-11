@@ -33,6 +33,7 @@ module.exports = {
       "exports": "never",
       "functions": "never"
     }],
+    "no-underscore-dangle": 0
   },
   parser : "babel-eslint"
 }

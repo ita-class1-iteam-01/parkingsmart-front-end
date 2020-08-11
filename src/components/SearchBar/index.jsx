@@ -1,7 +1,9 @@
+/* eslint-disable react/no-access-state-in-setstate */
 import React from 'react'
 import { SearchOutlined } from '@ant-design/icons'
 import { Space, Button, DatePicker } from 'antd'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 import CityPosition from '../CityPosition'
 import SearchCity from '../SearchCity'
 
@@ -46,11 +48,11 @@ class SearchBar extends React.Component {
 	onChange = (dates) => {
 		let status = true
 		if (dates === null) status = false
-
 		this.setState(
 			() => ({ isChooseDate: status }),
 			() => {
 				this.isComplete()
+				this.props.updateDate(dates)
 			}
 		)
 	};
@@ -90,14 +92,13 @@ class SearchBar extends React.Component {
 		return result
 	};
 
-	isComplete() {
-		let status = true
-		if (this.state.isChooseDate && this.state.isChooseDestination) status = false
+	isComplete = () =>{
+		const status = this.state.isChooseDate && this.state.isChooseDestination
 		this.setState({
 			isDisableSearchButton: status
 		})
 	}
-
+	
 	render() {
 		return (
   <Space>
@@ -121,6 +122,10 @@ class SearchBar extends React.Component {
   </Space>
 		)
 	}
+}
+
+SearchBar.propTypes = {
+	updateDate: PropTypes.func.isRequired
 }
 
 export default SearchBar
