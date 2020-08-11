@@ -2,7 +2,7 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import { Cascader, Spin } from 'antd'
 import PropTypes from 'prop-types'
-import { getLocation } from '../../api/api'
+import { getLocation } from '../../api/GaoDeApi'
 import { ConvertPinyin } from '../../utils/ConvertPinyin'
 import options from '../../constant/city'
 

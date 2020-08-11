@@ -1,7 +1,7 @@
 import { AutoComplete } from 'antd'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { inputPrompt } from '../../api/api'
+import { inputPrompt } from '../../api/GaoDeApi'
 
 const { Option } = AutoComplete
 
