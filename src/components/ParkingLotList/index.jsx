@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Row, Col, Button, Empty, Descriptions } from 'antd'
+import { Card, Row, Col, Button, Empty, Descriptions, Radio } from 'antd'
 import "./ParkingLotList.css"
 
 const testParkingLotListData = [
@@ -35,9 +35,20 @@ class ParkingLotList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            type: 'lots',
             parkinglots: testParkingLotListData
             // parkinglots: []
         }
+    }
+
+    onClick = () => {
+
+    }
+
+    onTypeChange = (event) => {
+        this.setState({
+            type: event.target.value
+        })
     }
 
     render() {
@@ -74,8 +85,9 @@ class ParkingLotList extends React.Component {
                             ￥/h
                           </Descriptions.Item>
                         </Descriptions>
-                        <div style={{display:"flex",justifyContent:"center"}}>
+                        <div style={{display:"flex", justifyContent:"center"}}>
                           <Button 
+                            onClick={this.onClick}
                             type="primary"
                             shape="round"
                           >
@@ -91,6 +103,16 @@ class ParkingLotList extends React.Component {
         }
         return (
           <div>
+            <Radio.Group 
+              buttonStyle="solid"
+              style={{margin: '20px 0 0 225px', display:"flex", justifyContent:"left"}} 
+              className="radiogroup"
+              onChange={this.onTypeChange} 
+              value={this.state.type}
+            >
+              <Radio.Button value="lots">Lots</Radio.Button>
+              <Radio.Button value="personal">Personal</Radio.Button>
+            </Radio.Group>
             {Message}
           </div>  
         )
