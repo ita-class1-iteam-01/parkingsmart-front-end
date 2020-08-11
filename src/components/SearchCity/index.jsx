@@ -1,5 +1,6 @@
 import { AutoComplete } from 'antd'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { inputPrompt } from '../../api/api'
 
 const { Option } = AutoComplete
@@ -48,6 +49,12 @@ class SearchCity extends React.Component {
   </div>
 		)
 	}
+}
+
+SearchCity.propTypes = {
+	city: PropTypes.string.isRequired,
+	chooseDestination: PropTypes.func.isRequired,
+	resetDestination : PropTypes.func.isRequired
 }
 
 export default SearchCity

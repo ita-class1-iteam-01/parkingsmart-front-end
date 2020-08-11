@@ -1,6 +1,7 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import { Cascader, Spin } from 'antd'
+import PropTypes from 'prop-types'
 import { getLocation } from '../../api/api'
 import { ConvertPinyin } from '../../utils/ConvertPinyin'
 import options from '../../constant/city'
@@ -9,7 +10,7 @@ class CityPositon extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      city: '',
+      city: ''
     }
   }
 
@@ -45,6 +46,10 @@ class CityPositon extends React.Component {
   />
 		)
 	}
+}
+
+CityPositon.propTypes = {
+  chooseCity: PropTypes.func.isRequired
 }
 
 export default CityPositon

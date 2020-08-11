@@ -68,7 +68,7 @@ const options = [
                 value: 'yunfu',
                 label: 'Yunfu'
             }
-        ],
+        ]
     },
     {
         value: 'guangxi',
@@ -77,9 +77,9 @@ const options = [
             {
                 value: 'nanning',
                 label: 'Nanning'
-            },
-        ],
-    },
+            }
+        ]
+    }
 ]
 
 export default options

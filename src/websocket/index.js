@@ -22,7 +22,7 @@ const BackEndWebSocket = {
             latitude,
             longitude,
             startTime,
-            endTime,
+            endTime
         }
         const packet = {
             version:1,
