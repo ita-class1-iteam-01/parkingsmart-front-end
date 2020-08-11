@@ -37,8 +37,13 @@
   }
 }
 
+body {
+  background-color: #efefef;
+}
+
 .nav {
   height: 72px;
+  background-color: #fff;
 }
 
 .nav .logo {
