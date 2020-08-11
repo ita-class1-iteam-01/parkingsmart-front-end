@@ -28,6 +28,58 @@ const testParkingLotListData = [
         "name": "parkinglot6",
         "remain": 10,
         "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
+    },{
+        "name": "parkinglot6",
+        "remain": 10,
+        "fee": 3
     }
 ]
 
@@ -64,7 +116,6 @@ class ParkingLotList extends React.Component {
             Message = (
               <Row 
                 className="row"
-                gutter={[16, 10]} 
               >
                 {this.state.parkinglots.map((parkinglot) => {
                   return (
