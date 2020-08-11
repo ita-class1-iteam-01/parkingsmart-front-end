@@ -93,10 +93,9 @@ class SearchBar extends React.Component {
 	};
 
 	isComplete = () =>{
-		const status = this.state.isChooseDate && this.state.isChooseDestination
 		this.setState({
-			isDisableSearchButton: status
-		})
+			isDisableSearchButton: !(this.state.isChooseDate && this.state.isChooseDestination)
+		});
 	}
 	
 	render() {
