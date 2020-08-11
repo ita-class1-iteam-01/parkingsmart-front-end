@@ -35,7 +35,7 @@ class SearchCity extends React.Component {
       style={{ width: 300 }}
       onSelect={this.onSelect}
       onChange={this.onChange}
-      placeholder="input destination"
+      placeholder="Please type your destination"
       allowClear
     >
       {this.state.tips.filter((item) => item.id.length !== 0).map((item) => {

@@ -59,3 +59,11 @@
   margin-top: 15px;
   border: grey solid 1px;
 }
+
+.rent-card {
+  margin-top: 10vh !important;
+}
+
+.rent-card .ant-form-item {
+  margin: 30px auto;
+}
