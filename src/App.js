@@ -1,6 +1,5 @@
 import React from 'react'
 import DateContainer from './containers/dateContainer'
-import SearchBar from './components/SearchBar'
 import ParkingLotList from './components/ParkingLotList'
 import Navigator from './components/Navigator'
 import './App.css'
