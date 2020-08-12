@@ -22,7 +22,9 @@ class SearchCity extends React.Component {
 		inputPrompt(this.props.city, e).then((res) => {
 			if (res.status === 200) {
 				this.setState({
-					tips: res.data.tips
+					tips: res.data.tips.filter(tip => {
+						return tip.location
+					})
 				})
 			}
 		})
