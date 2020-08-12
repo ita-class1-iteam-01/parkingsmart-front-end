@@ -142,7 +142,7 @@ class ParkingLotList extends React.Component {
                             type="primary"
                             shape="round"
                           >
-                            Log Info
+                            More
                           </Button>
                         </div>
                       </Card>

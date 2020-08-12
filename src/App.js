@@ -1,8 +1,8 @@
 import React from 'react'
 import SearchBarContainer from './containers/searchBarContainer'
-import ParkingLotList from './components/ParkingLotList'
 import Navigator from './components/Navigator'
 import './App.css'
+import ParkingLotInfoContainer from './containers/ParkingLotInfoContainer'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Navigator />
       <SearchBarContainer />
       <br />
-      <ParkingLotList />
+      <ParkingLotInfoContainer />
     </div>
   )
 }
