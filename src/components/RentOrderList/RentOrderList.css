@@ -1,0 +1,18 @@
+.empty {
+    font-size: 25px;
+    margin-top: 150px;
+}
+
+.row {
+    margin-top: '20px';
+    padding: 0 200px;
+}
+
+.ant-page-header-heading-title{
+    font-size:  30px;
+}
+
+.anticon-arrow-left svg{
+    width: 2em;
+    height: 2em;
+}

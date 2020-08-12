@@ -4,6 +4,7 @@ import Avatar from 'antd/lib/avatar/avatar'
 import { HashRouter, Route, Link, Switch } from 'react-router-dom'
 import Book from '../Book'
 import RentCarportForm from '../RentCarportForm'
+import RentOrderList from '../RentOrderList'
 import BookOrder from '../BookOrder'
 
 class Navigator extends React.Component {
@@ -21,7 +22,7 @@ class Navigator extends React.Component {
               <Link to="/bookOrder">book order</Link>             
             </Menu.Item>
             <Menu.Item>
-              rent order
+              <Link to="/rentOrder">rent order</Link>
             </Menu.Item>
           </Menu>
           )
@@ -50,6 +51,7 @@ class Navigator extends React.Component {
             <Switch>
               <Route exact path="/book"><Book /></Route>
               <Route exact path="/rent"><RentCarportForm /></Route>
+              <Route exact path="/rentOrder"><RentOrderList /></Route>
               <Route exact path="/bookOrder"><BookOrder /></Route>
             </Switch>
           </HashRouter>

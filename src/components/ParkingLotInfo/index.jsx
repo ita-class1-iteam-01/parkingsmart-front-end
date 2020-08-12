@@ -86,7 +86,13 @@ class ParkingLotInfo extends React.Component {
             </Col>
           </Row>
         </div>
-        <Popconfirm placement="top" title="Sure?" onConfirm={this.confirm} okText="Yes" cancelText="No">
+        <Popconfirm 
+          placement="top" 
+          title="Sure?" 
+          onConfirm={this.confirm} 
+          okText="Yes" 
+          cancelText="No"
+        >
           <Button type="primary" icon={<CheckOutlined />} size="large" style={{ marginLeft: 500 }}>
             Book
           </Button>
