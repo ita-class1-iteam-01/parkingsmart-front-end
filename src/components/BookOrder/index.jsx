@@ -1,13 +1,10 @@
 import React from 'react'
-import { Card, Row, Col, Empty, Descriptions, Tag, Badge } from 'antd'
+import { Card, Row, Col, Empty, Descriptions, Tag, Badge, PageHeader } from 'antd'
+import PropTypes from 'prop-types'
 import "./BookOrder.css"
-import { LeftOutlined } from "@ant-design/icons"
 import moment from 'moment'
-import { createHashHistory } from "history"
 import color from "./color"
 import bookOrderApi from "../../api/BookOrderApi"
-
-const history =  createHashHistory()
 
 class BookOrder extends React.Component {
   constructor(props) {
@@ -79,15 +76,16 @@ class BookOrder extends React.Component {
     return (
       <div>
         <div className='Title'>
-          <LeftOutlined style={{ height: 50 }} onClick={() => {history.goBack()}} />
-          {'  '}
-          Book Order
-          {this.state.id}
+          <PageHeader onBack={() => this.props.history.goBack()} title="Back" />
         </div>
         {Message}
       </div>
     )
   }
+}
+
+BookOrder.propTypes = {
+  history: PropTypes.objectOf(PropTypes.func).isRequired
 }
 
 export default BookOrder

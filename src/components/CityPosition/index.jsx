@@ -10,7 +10,7 @@ class CityPositon extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      city: ''
+      city: props.value ? props.value.replace(props.value[0],props.value[0].toUpperCase()) : ''
     }
   }
 
@@ -49,6 +49,7 @@ class CityPositon extends React.Component {
 }
 
 CityPositon.propTypes = {
+  value: PropTypes.string.isRequired,
   chooseCity: PropTypes.func.isRequired
 }
 

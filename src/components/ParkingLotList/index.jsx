@@ -58,8 +58,9 @@ class ParkingLotList extends React.Component {
                             {parkinglot.size}
                           </Descriptions.Item>                  
                           <Descriptions.Item span={3} label="Price">
+                            ￥
                             {parkinglot.price}
-                            ￥/h
+                            /h
                           </Descriptions.Item>
                         </Descriptions>
                         <div style={{display:"flex", justifyContent:"center"}}>

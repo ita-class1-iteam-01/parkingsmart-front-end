@@ -1,12 +1,10 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react'
 import { Card, Row, Col, Empty, Descriptions, Badge, Spin ,PageHeader, Tooltip } from 'antd'
-import { createHashHistory } from 'history'
+import PropTypes from 'prop-types'
 import { getOrders } from '../../api/RentOrder'
 import color from '../../constant/rentStatusColor'
 import "./RentOrderList.css"
-
-const history = createHashHistory()
 
 class RentOrderList extends React.Component {
     constructor(props) {
@@ -85,11 +83,15 @@ class RentOrderList extends React.Component {
         }
         return (
           <div>
-            <PageHeader onBack={() => history.push('/book')} title="Rent Order" />
+            <PageHeader onBack={() => this.props.history.push('/rent')} title="Rent Order" />
             {Message}
           </div>  
         )
     }
+}
+
+RentOrderList.propTypes = {
+  history: PropTypes.objectOf(PropTypes.func).isRequired
 }
 
 export default RentOrderList

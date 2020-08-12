@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SearchBarContainer from '../../containers/SearchBarContainer'
-import ParkingLotList from '../ParkingLotList'
+import ParkingLotListContainer from '../../containers/ParkingLotListContainer'
 import { COMMAND_CODE, webSocket} from '../../websocket'
 
 class Book extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            parkingLotList: [],
+            parkingLotList: props.parkingLotList.length === 0 ? [] : props.parkingLotList,
             socket: webSocket
         }
     }
@@ -21,6 +21,7 @@ class Book extends React.Component {
               this.setState({
                 parkingLotList: JSON.parse(response.data).page
               }) 
+              this.props.saveParkingLotList(this.state.parkingLotList)
             }
         }
         const parms =  {
@@ -41,14 +42,16 @@ class Book extends React.Component {
         return (
           <div>
             <SearchBarContainer search={this.search} />
-            <ParkingLotList list={this.state.parkingLotList} history={this.props.history} />
+            <ParkingLotListContainer list={this.state.parkingLotList} history={this.props.history} />
           </div>
         )
     }
 }
 
 Book.propTypes = {
-  history: PropTypes.objectOf(PropTypes.object).isRequired
+  parkingLotList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
+  saveParkingLotList: PropTypes.func.isRequired
 }
 
 export default Book

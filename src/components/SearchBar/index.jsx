@@ -20,8 +20,14 @@ class SearchBar extends React.Component {
 			address: props.address ? props.address.address : '',
 			currentHour: null,
 			data: {},
-			dates: []
+			dates: props.dateList.length !== 0 ? props.dateList : []
 		}
+	}
+
+	componentDidMount() {
+		this.setState({
+			isDisableSearchButton: this.state.dates.length === 0 || !this.state.city || !this.state.address
+		})
 	}
 
 	buttonOnClick = () => {
@@ -95,6 +101,13 @@ class SearchBar extends React.Component {
 		return null
 	};
 
+	defaultDateValue = () => {
+		if(this.state.dates.length === 0) {
+			return []
+		}
+		return [moment(this.state.dates[0]), moment(this.state.dates[1])]
+	}
+
 	disabledDate = (current) => {
 		return current < moment().startOf('days')
 	};
@@ -124,6 +137,7 @@ class SearchBar extends React.Component {
       resetDestination={this.resetDestination}
     />
     <RangePicker
+      defaultValue={this.defaultDateValue}
       disabledDate={this.disabledDate}
       disabledTime={this.disabledRangeTime}
       showTime={{}}
@@ -140,6 +154,7 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
+	dateList: PropTypes.arrayOf(PropTypes.string).isRequired,
 	address:PropTypes.objectOf(PropTypes.string).isRequired,
 	updateDate: PropTypes.func.isRequired,
 	updateAddress: PropTypes.func.isRequired,

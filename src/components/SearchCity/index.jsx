@@ -7,10 +7,11 @@ const { Option } = AutoComplete
 
 class SearchCity extends React.Component {
 	constructor(props) {
+		console.log(props.address);
 		super(props)
 		this.state = {
 			tips: [],
-			address: this.props.address || ''
+			address: props.address || ''
 		}
 	}
 

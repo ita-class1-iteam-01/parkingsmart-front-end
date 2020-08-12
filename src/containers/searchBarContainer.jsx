@@ -4,7 +4,6 @@ import {updateDate, updateAddress} from '../action/index'
 import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         dateList: state.dateList,
         address: state.address
