@@ -1,9 +1,21 @@
 /* eslint-disable object-shorthand */
-const updateDate = (dateList) => {
+export const updateDate = (dateList) => {
     return{
         type: "UPDATE_DATE",
         dateList: dateList
     }
 }
 
-export default updateDate
+export const saveParkingLotList = (parkingLotList) => {
+    return{
+        type: "SAVE_PARKING_LOT_LIST",
+        parkingLotList: parkingLotList
+    }
+}
+
+export const updateAddress = (address) => {
+    return{
+        type: "UPDATE_ADDRESS",
+        address: address
+    }
+}

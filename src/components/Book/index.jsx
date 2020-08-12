@@ -1,5 +1,6 @@
 import React from 'react'
-import SearchBarContainer from '../../containers/searchBarContainer'
+import PropTypes from 'prop-types'
+import SearchBarContainer from '../../containers/SearchBarContainer'
 import ParkingLotList from '../ParkingLotList'
 import { COMMAND_CODE, webSocket} from '../../websocket'
 
@@ -40,10 +41,14 @@ class Book extends React.Component {
         return (
           <div>
             <SearchBarContainer search={this.search} />
-            <ParkingLotList list={this.state.parkingLotList} />
+            <ParkingLotList list={this.state.parkingLotList} history={this.props.history} />
           </div>
         )
     }
+}
+
+Book.propTypes = {
+  history: PropTypes.objectOf(PropTypes.object).isRequired
 }
 
 export default Book

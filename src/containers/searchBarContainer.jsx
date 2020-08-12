@@ -1,16 +1,19 @@
 import { connect } from 'react-redux'
 // eslint-disable-next-line import/named
-import updateDate from '../action/index'
+import {updateDate, updateAddress} from '../action/index'
 import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = state => {
+    console.log(state)
     return {
-        dateList: state.dateList
+        dateList: state.dateList,
+        address: state.address
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    updateDate: (dateList) => dispatch(updateDate(dateList))
+    updateDate: (dateList) => dispatch(updateDate(dateList)),
+    updateAddress: (address) => dispatch(updateAddress(address))
 })
 
 const SearchBarContainer = connect(mapStateToProps,mapDispatchToProps)(SearchBar)

@@ -9,7 +9,8 @@ class SearchCity extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			tips: []
+			tips: [],
+			address: this.props.address || ''
 		}
 	}
 
@@ -19,6 +20,7 @@ class SearchCity extends React.Component {
 
 	onChange = (e) => {
 		if (e === undefined) this.props.resetDestination()
+		this.state.address = e
 		inputPrompt(this.props.city, e).then((res) => {
 			if (res.status === 200) {
 				this.setState({
@@ -34,6 +36,7 @@ class SearchCity extends React.Component {
 		return (
   <div>
     <AutoComplete
+      value={this.state.address}
       style={{ width: 300 }}
       onSelect={this.onSelect}
       onChange={this.onChange}
@@ -55,6 +58,7 @@ class SearchCity extends React.Component {
 
 SearchCity.propTypes = {
 	city: PropTypes.string.isRequired,
+	address: PropTypes.string.isRequired,
 	chooseDestination: PropTypes.func.isRequired,
 	resetDestination : PropTypes.func.isRequired
 }

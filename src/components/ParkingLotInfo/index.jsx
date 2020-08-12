@@ -1,6 +1,6 @@
 import React from 'react'
-import { LeftOutlined, CheckOutlined } from '@ant-design/icons/lib'
-import { Card, Row, Col, Form, Button, Popconfirm, message } from 'antd'
+import { CheckOutlined } from '@ant-design/icons/lib'
+import { Card, Row, Col, Form, Button, Popconfirm, message, PageHeader } from 'antd'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import './index.css'
@@ -11,7 +11,6 @@ class ParkingLotInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: 1,
       parkingLotInfo: {}
     }
   }
@@ -19,23 +18,18 @@ class ParkingLotInfo extends React.Component {
   componentDidMount() {
     this.setState({
       parkingLotInfo: {
-        name: 'OOCL parking lot NO.1',
-        size: 10,
-        price: '3￥/h',
-        address: 'ZHA, Southern Software Park'
+        name: this.props.location.query.parkinglot.name,
+        size: this.props.location.query.parkinglot.size,
+        price: `￥${this.props.location.query.parkinglot.price}/h`,
+        address: this.props.location.query.parkinglot.address
       }
     })
-      // getBookOrderById(this.state.id).then((res) => {
-      //   this.setState({
-      //     bookOrder: res.data
-    //   })
-    // })
   }
 
   confirm = () => {
     const bookOrder = {
       userId: 1,
-      parkingId: this.state.id,
+      parkingId: this.props.location.query.parkingLot.parkingId,
       parkingType: 'Lots',
       reservationStartTime: this.props.startTime,
       reservationEndTime: this.props.endTime,
@@ -56,12 +50,7 @@ class ParkingLotInfo extends React.Component {
     const threeSpace = '\u00A0\u00A0to\u00A0'
     return (
       <div className='ParkingLotInfo'>
-        <div className='Title'>
-          <LeftOutlined style={{ height: 50 }} />
-          {'  '}
-          Parking Lot Information
-          {this.state.id}
-        </div>
+        <PageHeader onBack={() => this.props.history.goBack()} title="Back" />
         <div className='InfoDiv'>
           <Row gutter='70'>
             <Col>
@@ -104,7 +93,9 @@ class ParkingLotInfo extends React.Component {
 
 ParkingLotInfo.propTypes = {
 	startTime: PropTypes.number.isRequired,
-	endTime: PropTypes.number.isRequired
+  endTime: PropTypes.number.isRequired,
+  location: PropTypes.objectOf(PropTypes.object).isRequired,
+  history: PropTypes.objectOf(PropTypes.object).isRequired
 }
 
 export default ParkingLotInfo

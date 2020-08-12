@@ -16,7 +16,8 @@ class SearchBar extends React.Component {
 			isDisableSearchButton: true,
 			isChooseDestination: false,
 			isChooseDate: false,
-			city: '',
+			city: props.address ? props.address.city : '',
+			address: props.address ? props.address.address : '',
 			currentHour: null,
 			data: {},
 			dates: []
@@ -25,6 +26,10 @@ class SearchBar extends React.Component {
 
 	buttonOnClick = () => {
 		this.props.search(this.state.data, this.state.dates)
+		this.props.updateAddress({
+			city: this.state.city,
+			address: this.state.data.name
+		})
 	}
 
 	chooseDestination = (data) => {
@@ -111,8 +116,9 @@ class SearchBar extends React.Component {
 	render() {
 		return (
   <Space>
-    <CityPosition chooseCity={this.chooseCity} />
+    <CityPosition chooseCity={this.chooseCity} value={this.state.city} />
     <SearchCity
+      address={this.state.address}
       chooseDestination={this.chooseDestination}
       city={this.state.city}
       resetDestination={this.resetDestination}
@@ -134,7 +140,9 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
+	address:PropTypes.objectOf(PropTypes.string).isRequired,
 	updateDate: PropTypes.func.isRequired,
+	updateAddress: PropTypes.func.isRequired,
 	search: PropTypes.func.isRequired
 }
 

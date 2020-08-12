@@ -12,8 +12,13 @@ class ParkingLotList extends React.Component {
         }
     }
 
-    onClick = () => {
-
+    onClick = (parkinglot) => {
+      this.props.history.push({
+        pathname: '/parkingLotInfo',
+        query: {
+          parkinglot
+        }
+      })
     }
 
     onTypeChange = (event) => {
@@ -41,6 +46,7 @@ class ParkingLotList extends React.Component {
                   return (
                     <Col
                       span={6}
+                      key={parkinglot.id}
                     >
                       <Card  
                         hoverable 
@@ -58,7 +64,7 @@ class ParkingLotList extends React.Component {
                         </Descriptions>
                         <div style={{display:"flex", justifyContent:"center"}}>
                           <Button 
-                            onClick={this.onClick}
+                            onClick={() => this.onClick(parkinglot)}
                             type="primary"
                             shape="round"
                           >
@@ -91,7 +97,8 @@ class ParkingLotList extends React.Component {
 }
 
 ParkingLotList.propTypes = {
-	list: PropTypes.arrayOf(PropTypes.object).isRequired
+  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.objectOf(PropTypes.object).isRequired
 }
 
 export default ParkingLotList

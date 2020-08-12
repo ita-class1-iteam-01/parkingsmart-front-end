@@ -1,7 +1,6 @@
 import React from 'react'
 import { message,Button,Form, Input, DatePicker, Row, Col, Card} from 'antd'
 import moment from 'moment'
-import { FormInstance } from 'antd/lib/form'
 import CityPosition from '../CityPosition'
 import SearchCity from '../SearchCity'
 import {newRentOrder} from '../../api'
@@ -86,7 +85,7 @@ class RentCarportForm extends React.Component{
 
     submit = async () => {
       try {
-        const values = await this.state.formRef.current.validateFields()
+        await this.state.formRef.current.validateFields()
         const order = {
           userId: 1,
           address: this.state.address,
