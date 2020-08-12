@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const RentOrderAxios = axios.create({
-  baseURL: 'http://localhost:8090/rentOrders'
+  baseURL: 'http://10.222.29.148:8090/rentOrders'
 })
 
 export const getOrders = () => {
