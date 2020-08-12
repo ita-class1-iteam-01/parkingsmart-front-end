@@ -1,94 +1,13 @@
 import React from 'react'
 import { Card, Row, Col, Button, Empty, Descriptions, Radio } from 'antd'
+import PropTypes from 'prop-types'
 import "./ParkingLotList.css"
-
-const testParkingLotListData = [
-    {
-        "name": "OOCL Parking lot No.1",
-        "remain": 10,
-        "fee": 3
-    },
-    {
-        "name": "parkinglot2",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot3",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot4",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot5",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    },{
-        "name": "parkinglot6",
-        "remain": 10,
-        "fee": 3
-    }
-]
 
 class ParkingLotList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            type: 'lots',
-            parkinglots: testParkingLotListData
+            type: 'lots'
             // parkinglots: []
         }
     }
@@ -104,8 +23,9 @@ class ParkingLotList extends React.Component {
     }
 
     render() {
+        const parkinglots = this.props.list
         let Message
-        if (this.state.parkinglots.length === 0) {
+        if (parkinglots.length === 0) {
             Message = (
               <Empty
                 className="empty"
@@ -117,7 +37,7 @@ class ParkingLotList extends React.Component {
               <Row 
                 className="row"
               >
-                {this.state.parkinglots.map((parkinglot) => {
+                {parkinglots.map((parkinglot) => {
                   return (
                     <Col
                       span={6}
@@ -129,10 +49,10 @@ class ParkingLotList extends React.Component {
                       >
                         <Descriptions>
                           <Descriptions.Item span={3} label="Remain Park Spaces">
-                            {parkinglot.remain}
+                            {parkinglot.size}
                           </Descriptions.Item>                  
                           <Descriptions.Item span={3} label="Price">
-                            {parkinglot.remain}
+                            {parkinglot.price}
                             ￥/h
                           </Descriptions.Item>
                         </Descriptions>
@@ -165,9 +85,13 @@ class ParkingLotList extends React.Component {
               <Radio.Button value="personal">Personal</Radio.Button>
             </Radio.Group>
             {Message}
-          </div>  
+          </div>
         )
     }
+}
+
+ParkingLotList.propTypes = {
+	list: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default ParkingLotList

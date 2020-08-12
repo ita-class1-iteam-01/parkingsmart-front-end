@@ -2,9 +2,10 @@ import React from 'react'
 import { Menu,Dropdown , Row, Col } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
 import { HashRouter, Route, Link, Switch } from 'react-router-dom'
-import SearchBar from '../SearchBar'
+import Book from '../Book'
 import RentCarportForm from '../RentCarportForm'
 import RentOrderList from '../RentOrderList'
+import BookOrder from '../BookOrder'
 
 class Navigator extends React.Component {
 
@@ -18,7 +19,7 @@ class Navigator extends React.Component {
         const menu = (
           <Menu>
             <Menu.Item>
-              book order
+              <Link to="/bookOrder">book order</Link>             
             </Menu.Item>
             <Menu.Item>
               <Link to="/rentOrder">rent order</Link>
@@ -48,9 +49,10 @@ class Navigator extends React.Component {
               </Col>
             </Row>
             <Switch>
-              <Route exact path="/book"><SearchBar /></Route>
+              <Route exact path="/book"><Book /></Route>
               <Route exact path="/rent"><RentCarportForm /></Route>
               <Route exact path="/rentOrder"><RentOrderList /></Route>
+              <Route exact path="/bookOrder"><BookOrder /></Route>
             </Switch>
           </HashRouter>
         )

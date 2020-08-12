@@ -17,17 +17,26 @@ class SearchBar extends React.Component {
 			isChooseDestination: false,
 			isChooseDate: false,
 			city: '',
-			currentHour: null
+			currentHour: null,
+			data: {},
+			dates: []
 		}
 	}
 
-	chooseDestination = () => {
+	buttonOnClick = () => {
+		this.props.search(this.state.data, this.state.dates)
+	}
+
+	chooseDestination = (data) => {
 		this.setState(
 			() => ({ isChooseDestination: true }),
 			() => {
 				this.isComplete()
 			}
 		)
+		this.setState({
+			data
+		})
 	};
 
 	resetDestination = () => {
@@ -45,7 +54,7 @@ class SearchBar extends React.Component {
 		})
 	};
 
-	onChange = (dates) => {
+	onChange = (dates, dateStrings) => {
 		let status = true
 		if (dates === null) status = false
 		this.setState(
@@ -55,6 +64,7 @@ class SearchBar extends React.Component {
 				this.props.updateDate(dates)
 			}
 		)
+		this.state.dates = dateStrings
 	};
 
 	disabledRangeTime = (current, type) => {
@@ -115,7 +125,7 @@ class SearchBar extends React.Component {
       onChange={this.onChange}
       onOk={this.onOk}
     />
-    <Button type="primary" icon={<SearchOutlined />} disabled={this.state.isDisableSearchButton}>
+    <Button type="primary" icon={<SearchOutlined />} disabled={this.state.isDisableSearchButton} onClick={this.buttonOnClick}>
       Search
     </Button>
   </Space>
@@ -124,7 +134,8 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-	updateDate: PropTypes.func.isRequired
+	updateDate: PropTypes.func.isRequired,
+	search: PropTypes.func.isRequired
 }
 
 export default SearchBar
