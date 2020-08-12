@@ -11,3 +11,7 @@ export const getOrders = () => {
 export const addOrders = (param) => {
   return RentOrderAxios.post(param)
 }
+
+export const getOrderById = (id) => {
+  return RentOrderAxios.get(`/${id}`)
+}

@@ -1,43 +1,56 @@
 import React from 'react'
 import { LeftOutlined, CheckOutlined } from '@ant-design/icons/lib'
 import { Card, Row, Col, Form, Button, Popconfirm, message, Badge } from 'antd'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import './PersonalCarportDetail.css'
 import parkingLot from '../../static/picture/parkingLot.png'
-import { addOrders } from '../../api/RentOrder'
+import { getOrderById } from '../../api/RentOrder'
+import { newPersonalBookOrder } from '../../api/index'
 
 class PersonalCarportDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: 1,
       parkingLotInfo: {}
     }
   }
 
   componentDidMount() {
-    this.setState({
-      parkingLotInfo: {
-        carport: 'A101',
-        contact: 'Miss Yang',
-        contactPhone: '13766',
-        price: 300,
-        address: 'ZHA, Southern Software Park',
-        rentStartDate: '2020-08-11',
-        rentEndDate: '2020-09-11'
+    // this.setState({
+    //   parkingLotInfo: {
+    //     carport: 'A101',
+    //     contact: 'Miss Yang',
+    //     contactPhone: '13766',
+    //     price: 300,
+    //     address: 'ZHA, Southern Software Park',
+    //     rentStartDate: '2020-08-11',
+    //     rentEndDate: '2020-09-11'
+    //   }
+    // })
+
+    const personalId = 4
+    getOrderById(personalId).then((res)=>{
+      if(res.status === 200){
+        this.setState({
+          parkingLotInfo: res.data.data
+        })
       }
     })
   }
 
   confirm = () => {
     const bookOrder = {
-      userId: 1,
-      parkingId: this.state.id,
-      parkingType: 'personal'
-      // reservationStartTime: this.props.startTime,
-      // reservationEndTime: this.props.endTime
+      userId: 9,
+      parkingId: this.state.parkingLotInfo.id,
+      parkingType: 'personal',
+      reservationStartTime: this.props.startTime,
+      reservationEndTime: this.props.endTime,
+      status: this.state.parkingLotInfo.status,
+      carPort: this.state.parkingLotInfo.personCarport,
+      address: this.state.parkingLotInfo.address,
+      totalPrice: 0
     }
-    addOrders(bookOrder).then((res) => {
+    newPersonalBookOrder(bookOrder,this.state.parkingLotInfo.id).then((res) => {
       if (res.data.code === 1) {
         message.error('Sorry, the selected time slot parking space is booked!')
       } else {
@@ -62,15 +75,15 @@ class PersonalCarportDetail extends React.Component {
                 <Card style={{ width: 600, height: 350 }}>
                   <Form labelAlign='left' labelCol={{ span: 7 }}>
                     <Form.Item label="Address">{ this.state.parkingLotInfo.address }</Form.Item>
-                    <Form.Item label="Carport">{ this.state.parkingLotInfo.carport }</Form.Item>
+                    <Form.Item label="Carport">{ this.state.parkingLotInfo.personCarport }</Form.Item>
                     <Form.Item label="Price">
                       ￥
                       { this.state.parkingLotInfo.price }
                       /month
                     </Form.Item>
-                    <Form.Item label="Contact">{ this.state.parkingLotInfo.contact }</Form.Item>
+                    <Form.Item label="Contact">{ this.state.parkingLotInfo.contactPerson }</Form.Item>
                     <Form.Item label="Carport Phone">
-                      { this.state.parkingLotInfo.contactPhone}
+                      { this.state.parkingLotInfo.contactNumber}
                     </Form.Item>
                     <Form.Item label="Rent Time">
                       { this.state.parkingLotInfo.rentStartDate }
@@ -99,9 +112,9 @@ class PersonalCarportDetail extends React.Component {
   }
 }
 
-// ParkingLotInfo.propTypes = {
-// 	startTime: PropTypes.number.isRequired,
-// 	endTime: PropTypes.number.isRequired
-// }
+PersonalCarportDetail.propTypes = {
+	startTime: PropTypes.number.isRequired,
+	endTime: PropTypes.number.isRequired
+}
 
 export default PersonalCarportDetail
