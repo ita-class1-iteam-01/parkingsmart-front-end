@@ -45,7 +45,7 @@ class BookOrder extends React.Component {
               <Col
                 span={6}
               >
-                <Badge.Ribbon text={bookOrder.status} color={color[bookOrder.status]} style={{top:20}}>
+                <Badge.Ribbon text={bookOrder.status} color={color[bookOrder.status]} style={{top:20,width:82}}>
                   <Card
                     hoverable
                     style={{ barground: '#ffffff', padding: '0 23px', margin: '20px',
