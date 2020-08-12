@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Row, Col, Empty, Descriptions, Tag, Badge } from 'antd'
+import { Card, Row, Col, Empty, Descriptions, Tag, Badge, Tooltip } from 'antd'
 import "./BookOrder.css"
 import { LeftOutlined } from "@ant-design/icons"
 import moment from 'moment'
@@ -46,29 +46,31 @@ class BookOrder extends React.Component {
                 span={6}
               >
                 <Badge.Ribbon text={bookOrder.status} color={color[bookOrder.status]} style={{top:20,width:82}}>
-                  <Card
-                    hoverable
-                    style={{ barground: '#ffffff', padding: '0 23px', margin: '20px',
-                     textAlign: 'left' }}
-                    title={bookOrder.address}
-                    extra={<Tag style={{ right: 30, display: bookOrder.parkingType ==="lots" ? "none" : "block" }} color="blue">{bookOrder.parkingType}</Tag>}
-                  >
+                  <Tooltip title={bookOrder.address} color="blue">
+                    <Card
+                      hoverable
+                      style={{ barground: '#ffffff', padding: '0 23px', margin: '20px',
+                      textAlign: 'left' }}
+                      title={bookOrder.address}
+                      extra={<Tag style={{ right: 30, display: bookOrder.parkingType ==="lots" ? "none" : "block" }} color="blue">{bookOrder.parkingType}</Tag>}
+                    >
 
-                    <Descriptions>
-                      <Descriptions.Item span={3} label="Total Price">
-                        ￥
-                        {bookOrder.totalPrice}
-                      </Descriptions.Item>
-                      <Descriptions.Item span={3}>
-                        {moment(bookOrder.reservationStartTime).format(
-                          'YYYY-MM-DD HH:mm').toLocaleString()}
-                        {' - '}
-                        {moment(bookOrder.reservationEndTimenew).format(
-                          'YYYY-MM-DD HH:mm').toLocaleString()}
-                      </Descriptions.Item>
+                      <Descriptions>
+                        <Descriptions.Item span={3} label="Total Price">
+                          ￥
+                          {bookOrder.totalPrice}
+                        </Descriptions.Item>
+                        <Descriptions.Item span={3}>
+                          {moment(bookOrder.reservationStartTime).format(
+                            'YYYY-MM-DD HH:mm').toLocaleString()}
+                          {' - '}
+                          {moment(bookOrder.reservationEndTimenew).format(
+                            'YYYY-MM-DD HH:mm').toLocaleString()}
+                        </Descriptions.Item>
 
-                    </Descriptions>
-                  </Card>
+                      </Descriptions>
+                    </Card>
+                  </Tooltip>
                 </Badge.Ribbon>
               </Col>
             )
