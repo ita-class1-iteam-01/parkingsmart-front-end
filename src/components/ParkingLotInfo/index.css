@@ -1,0 +1,21 @@
+.ParkingLotInfo {
+  width: 100%;
+  padding: 100px 15%;
+  text-align: left;
+}
+.ParkingLotInfo .ant-form-item-label > label, .ParkingLotInfo .ant-form-item-control-input-content {
+  font-weight: 500;
+}
+.ParkingLotInfo .Title .anticon svg {
+  height: 40px;
+  width: 40px;
+}
+.ParkingLotInfo .Title {
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 40px; 
+  font-size: 35px;
+}
+.ParkingLotInfo .InfoDiv{
+  margin-bottom: 30px;
+}
