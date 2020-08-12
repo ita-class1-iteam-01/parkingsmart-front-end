@@ -37,12 +37,16 @@ class ParkingLotInfo extends React.Component {
       userId: 1,
       parkingId: this.state.id,
       parkingType: 'Lots',
-      reservationStartTime: moment(this.props.startTime).valueOf(),
-      reservationEndTime: moment(this.props.endTime).valueOf(),
+      reservationStartTime: this.props.startTime,
+      reservationEndTime: this.props.endTime,
       status: 'UnReservate'
     }
     newBookOrder(bookOrder).then((res) => {
-      message.success(`Book successfully, the car port is ${res.data.data.carPort}`)
+      if (res.data.code === 1) {
+        message.error('Book fail, the selected time slot parking space is full!')
+      } else {
+        message.success(`Book successfully, the car port is ${res.data.data.carPort}`)
+      }
     })
   }
 
@@ -91,8 +95,8 @@ class ParkingLotInfo extends React.Component {
 }
 
 ParkingLotInfo.propTypes = {
-	startTime: PropTypes.string.isRequired,
-	endTime: PropTypes.string.isRequired
+	startTime: PropTypes.number.isRequired,
+	endTime: PropTypes.number.isRequired
 }
 
 export default ParkingLotInfo
