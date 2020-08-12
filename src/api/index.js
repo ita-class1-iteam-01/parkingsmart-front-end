@@ -9,3 +9,7 @@ export const getBookOrderById  = (id) => {
 export const newBookOrder  = (bookOrder) => {
   return axios.post(`${baseURL}/bookOrders`, bookOrder)
 }
+
+export const newRentOrder = function (rentOrder) {
+  return axios.post(`${baseURL}/rentOrders`, rentOrder)
+}
