@@ -4,6 +4,7 @@ import moment from 'moment'
 import CityPosition from '../CityPosition'
 import SearchCity from '../SearchCity'
 import {newRentOrder} from '../../api'
+import './index.css'
 
 const {RangePicker} = DatePicker
 
@@ -115,14 +116,14 @@ class RentCarportForm extends React.Component{
         return (
           <Row>
             <Col span={10} offset={7}>
-              <Card title="Rent out your carport for a commission" className="rent-card">
+              <Card title="Rent out your carport for a commission" className="rent-card rent-card-title">
                 <Form labelAlign="right" labelCol={{span:4}} ref={this.state.formRef}>
                   <Form.Item label="Address" name="address" rules={[{required:true, message:"Please type your carport address"}]}>
                     <Row>
-                      <Col span={6}>
+                      <Col span={6} className="rent-card-address-city"> 
                         <CityPosition chooseCity={this.chooseCity} />
                       </Col>
-                      <Col span={6}>
+                      <Col span={6} className="rent-card-address-address">
                         <SearchCity
                           chooseDestination={this.chooseDestination}
                           city={this.state.city}
@@ -140,11 +141,11 @@ class RentCarportForm extends React.Component{
                   </Form.Item>
         
                   <Form.Item label="Rent period" name="period" style={{ marginBottom: 0 }} rules={[{required:true, message:"Please type rent period"}]}>
-                    <RangePicker onChange={this.handleDateChange} disabledDate={this.disabledDate} format="YYYY-MM-01" picker="month" />
+                    <RangePicker onChange={this.handleDateChange} disabledDate={this.disabledDate} format="YYYY-MM-01" picker="month" className="rent-card-date" />
                   </Form.Item>
     
                   <Form.Item label="Price" name="price" hasFeedback rules={[{required:true,message:"Please type monthly rent"},{validator: this.validatePrice}]}>
-                    <Input onChange={this.handlePriceChange} allowClear suffix="RMB /per month" placeholder="Please type monthly rent" />
+                    <Input onChange={this.handlePriceChange} allowClear suffix="RMB / Month" placeholder="Please type monthly rent" />
                   </Form.Item>
                   <Form.Item label="Contact" name="contact" hasFeedback rules={[{required:true, message:"Please type your name"}]}>
                     <Input onChange={this.handleContactChange} allowClear placeholder="Please type your name" />
@@ -154,7 +155,7 @@ class RentCarportForm extends React.Component{
                   </Form.Item>
                   <Form.Item>
                     <Button type="primary" htmlType="submit" onClick={this.submit}>
-                      Submit
+                      Rent
                     </Button>
                   </Form.Item>
                 </Form>

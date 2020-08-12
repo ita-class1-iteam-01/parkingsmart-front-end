@@ -1,0 +1,22 @@
+.rent-card {
+  margin-top: 10vh !important;
+}
+
+.rent-card .ant-form-item {
+  margin: 30px auto;
+}
+
+.rent-card-title .ant-card-head-title {
+  font-size: 24px;
+}
+.rent-card-address-city {
+  margin-right: 20px;
+}
+
+.rent-card-address-address .ant-select {
+  width: 449px!important;
+}
+
+.rent-card-date {
+  width: 619px!important;
+}

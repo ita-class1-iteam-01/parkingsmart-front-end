@@ -7,6 +7,7 @@ import ParkingLotInfoContainer from '../../containers/ParkingLotInfoContainer'
 import RentCarportForm from '../RentCarportForm'
 import RentOrderList from '../RentOrderList'
 import BookOrder from '../BookOrder'
+import './index.css'
 
 class Navigator extends React.Component {
 

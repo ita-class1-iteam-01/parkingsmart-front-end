@@ -78,7 +78,7 @@ class BookOrder extends React.Component {
     return (
       <div>
         <div className='Title'>
-          <PageHeader onBack={() => this.props.history.goBack()} title="Back" />
+          <PageHeader onBack={() => this.props.history.push('/book')} title="Back" />
         </div>
         {Message}
       </div>

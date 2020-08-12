@@ -1,0 +1,23 @@
+.nav {
+  height: 72px;
+  background-color: #fff;
+}
+
+.nav .logo {
+  margin-top: 15px;
+}
+
+.nav-tab {
+  height: 72px;
+  line-height: 68px;
+}
+
+.nav-tab .ant-menu-item{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.avatar {
+  margin-top: 15px;
+  border: grey solid 1px;
+}
