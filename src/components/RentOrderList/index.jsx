@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react'
-import { Card, Row, Col, Empty, Descriptions, Badge, Spin ,PageHeader } from 'antd'
-import getOrders from '../../api/RentOrder'
+import { Card, Row, Col, Empty, Descriptions, Badge, Spin ,PageHeader, Tooltip } from 'antd'
+import { createHashHistory } from 'history'
+import { getOrders } from '../../api/RentOrder'
 import color from '../../constant/rentStatusColor'
 import "./RentOrderList.css"
+
+const history = createHashHistory()
 
 class RentOrderList extends React.Component {
     constructor(props) {
@@ -45,6 +48,7 @@ class RentOrderList extends React.Component {
                       key={rentOrder.id}
                     >
                       <Badge.Ribbon text={rentOrder.status} color={color[rentOrder.status]}>
+                      <Tooltip title={rentOrder.address} color="blue">
                       <Card  
                         hoverable 
                         style={{barground: '#ffffff', margin: '20px', textAlign: 'left'}}
@@ -71,6 +75,7 @@ class RentOrderList extends React.Component {
                           </Descriptions.Item>
                         </Descriptions>
                       </Card>
+                      </Tooltip>
                       </Badge.Ribbon>
                     </Col>
                 )
@@ -80,7 +85,7 @@ class RentOrderList extends React.Component {
         }
         return (
           <div>
-            <PageHeader onBack={() => null} title="Rent Order" />
+            <PageHeader onBack={() => history.push('/book')} title="Rent Order" />
             {Message}
           </div>  
         )
