@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = '/api'
+const baseURL = 'http://10.222.29.148:8090'
 
 export const getBookOrderById  = (id) => {
   return axios.get(`${baseURL}/bookOrders/${id}`)

@@ -10,13 +10,4 @@ module.exports = function (app) {
       }
     })
   )
-  app.use('/api',
-    proxy.createProxyMiddleware({
-      target: 'http://10.222.29.148:8090',
-      changeOrigin: true,
-      pathRewrite: {
-        '/api': ''
-      }
-    })
-  )
 }
