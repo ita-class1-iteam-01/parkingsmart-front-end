@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchBarContainer from '../../containers/SearchBarContainer'
+import SearchBarContainer from '../../containers/searchBarContainer'
 import ParkingLotList from '../ParkingLotList'
 import { COMMAND_CODE, webSocket} from '../../websocket'
 

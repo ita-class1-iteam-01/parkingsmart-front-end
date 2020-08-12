@@ -5,6 +5,9 @@ import { LeftOutlined } from "@ant-design/icons"
 import moment from 'moment'
 import color from "./color"
 import bookOrderApi from "../../api/BookOrderApi"
+import { createHashHistory } from "history"
+
+const history =  createHashHistory()
 
 class BookOrder extends React.Component {
   constructor(props) {
@@ -42,13 +45,13 @@ class BookOrder extends React.Component {
               <Col
                 span={6}
               >
-                <Badge.Ribbon text={bookOrder.status} color={color[bookOrder.status]}>
+                <Badge.Ribbon text={bookOrder.status} color={color[bookOrder.status]} style={{top:20}}>
                   <Card
                     hoverable
                     style={{ barground: '#ffffff', padding: '0 23px', margin: '20px',
                      textAlign: 'left', border: "1px solid black" }}
                     title={bookOrder.address}
-                    extra={<Tag style={{ right: 30 }} color={bookOrder.parkingType === "Lots" ? "blue" : "orange"}>{bookOrder.parkingType}</Tag>}
+                    extra={<Tag style={{ right: 30, display: bookOrder.parkingType ==="lots" ? "none" : "block" }} color="blue">{bookOrder.parkingType}</Tag>}
                   >
 
                     <Descriptions>
@@ -76,7 +79,7 @@ class BookOrder extends React.Component {
     return (
       <div>
         <div className='Title'>
-          <LeftOutlined style={{ height: 50 }} />
+          <LeftOutlined style={{ height: 50 }} onClick={() => {history.goBack()}} />
           {'  '}
           Book Order
           {this.state.id}
