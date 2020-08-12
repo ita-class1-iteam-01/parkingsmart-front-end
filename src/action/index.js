@@ -6,11 +6,4 @@ const updateDate = (dateList) => {
     }
 }
 
-const getAllBookOrders = (bookOrders) => {
-    return{
-        type: "GET_ALL_BOOK_ORDERS",
-        bookOrders: bookOrders
-    }
-}
-
-export default {updateDate,getAllBookOrders}
+export default updateDate

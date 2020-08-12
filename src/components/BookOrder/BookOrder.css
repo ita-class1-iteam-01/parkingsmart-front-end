@@ -8,3 +8,10 @@
     padding: 0 200px;
 }
 
+.Title {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    font-size: 35px;
+    text-align: left;
+  }

@@ -5,7 +5,7 @@ import moment from 'moment'
 import PropTypes from 'prop-types'
 import './index.css'
 import parkingLot from '../../static/picture/parkingLot.png'
-import { getBookOrderById, newBookOrder } from '../../api'
+import { newBookOrder } from '../../api'
 
 class ParkingLotInfo extends React.Component {
   constructor(props) {
@@ -71,7 +71,9 @@ class ParkingLotInfo extends React.Component {
               <Card style={{ width: 600, height: 350 }}>
                 <Form labelAlign='left' labelCol={{ span: 7 }}>
                   <Form.Item label="Parking Lot Name">{ this.state.parkingLotInfo.name }</Form.Item>
-                  <Form.Item label="Remain Park Spaces">{ this.state.parkingLotInfo.size }</Form.Item>
+                  <Form.Item label="Remain Park Spaces">
+                    { this.state.parkingLotInfo.size }
+                  </Form.Item>
                   <Form.Item label="Address">{ this.state.parkingLotInfo.address }</Form.Item>
                   <Form.Item label="Appointment">
                     { startTime }
