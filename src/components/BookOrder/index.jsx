@@ -3,9 +3,9 @@ import { Card, Row, Col, Empty, Descriptions, Tag, Badge } from 'antd'
 import "./BookOrder.css"
 import { LeftOutlined } from "@ant-design/icons"
 import moment from 'moment'
+import { createHashHistory } from "history"
 import color from "./color"
 import bookOrderApi from "../../api/BookOrderApi"
-import { createHashHistory } from "history"
 
 const history =  createHashHistory()
 
