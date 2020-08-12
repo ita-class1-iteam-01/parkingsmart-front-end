@@ -4,8 +4,10 @@ const RentOrderAxios = axios.create({
   baseURL: 'http://localhost:8090/rentOrders'
 })
 
-const getOrders = () => {
+export const getOrders = () => {
   return RentOrderAxios.get()
 }
 
-export default getOrders
+export const addOrders = (param) => {
+  return RentOrderAxios.post(param)
+}
