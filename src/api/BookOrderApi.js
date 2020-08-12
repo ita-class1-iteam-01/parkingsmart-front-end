@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const basicUrl="http://localhost:8090/bookOrders"
+const basicUrl="http://10.222.29.148:8090/bookOrders"
 
 const getAll = () => {
     return axios.get(basicUrl)
