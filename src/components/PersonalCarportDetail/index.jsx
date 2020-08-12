@@ -69,7 +69,9 @@ class PersonalCarportDetail extends React.Component {
                       /month
                     </Form.Item>
                     <Form.Item label="Contact">{ this.state.parkingLotInfo.contact }</Form.Item>
-                    <Form.Item label="Carport Phone">{ this.state.parkingLotInfo.contactPhone}</Form.Item>
+                    <Form.Item label="Carport Phone">
+                      { this.state.parkingLotInfo.contactPhone}
+                    </Form.Item>
                     <Form.Item label="Rent Time">
                       { this.state.parkingLotInfo.rentStartDate }
                       &nbsp;-&nbsp;
@@ -81,7 +83,13 @@ class PersonalCarportDetail extends React.Component {
             </Col>
           </Row>
         </div>
-        <Popconfirm placement="top" title="Are you sure?" onConfirm={this.confirm} okText="Yes" cancelText="No">
+        <Popconfirm 
+          placement="top" 
+          title="Are you sure?" 
+          onConfirm={this.confirm} 
+          okText="Yes" 
+          cancelText="No"
+        >
           <Button type="primary" icon={<CheckOutlined />} size="large" style={{ marginLeft: 500 }}>
             Book
           </Button>
