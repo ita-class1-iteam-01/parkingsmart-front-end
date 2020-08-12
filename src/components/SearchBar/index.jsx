@@ -26,7 +26,9 @@ class SearchBar extends React.Component {
 
 	componentDidMount() {
 		this.setState({
-			isDisableSearchButton: this.state.dates.length === 0 || !this.state.city || !this.state.address
+      isDisableSearchButton: this.state.dates.length === 0 || !this.state.city || !this.state.address,
+      isChooseDate: this.state.dates.length !== 0,
+      isChooseDestination: !this.state.city && !this.state.address
 		})
 	}
 
