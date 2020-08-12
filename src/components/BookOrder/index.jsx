@@ -49,7 +49,7 @@ class BookOrder extends React.Component {
                   <Card
                     hoverable
                     style={{ barground: '#ffffff', padding: '0 23px', margin: '20px',
-                     textAlign: 'left', border: "1px solid black" }}
+                     textAlign: 'left' }}
                     title={bookOrder.address}
                     extra={<Tag style={{ right: 30, display: bookOrder.parkingType ==="lots" ? "none" : "block" }} color="blue">{bookOrder.parkingType}</Tag>}
                   >
