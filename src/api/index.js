@@ -14,6 +14,10 @@ export const newPersonalBookOrder = (bookOrder,rentOrderId) =>{
   return axios.post(`${baseURL}/bookOrders/personal/${rentOrderId}`,bookOrder)
 }
 
+export const getSeckillResult = (rentId) =>{
+  return axios.get(`${baseURL}/bookOrders/seckill/${rentId}`)
+}
+
 export const newRentOrder = (rentOrder)  => {
   return axios.post(`${baseURL}/rentOrders`, rentOrder)
 }

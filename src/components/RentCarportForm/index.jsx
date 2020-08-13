@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react'
 import { message,Button,Form, Input, DatePicker, Row, Col, Card, Switch, Tooltip} from 'antd'
 import { QuestionCircleTwoTone } from '@ant-design/icons'

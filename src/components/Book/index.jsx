@@ -31,7 +31,10 @@ class Book extends React.Component {
         return (
           <div>
             <SearchBarContainer search={this.search} />
-            <ParkingLotListContainer list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList} history={this.props.history} />
+            <ParkingLotListContainer 
+              list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList} 
+              history={this.props.history} 
+            />
           </div>
         )
     }

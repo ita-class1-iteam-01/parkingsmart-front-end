@@ -42,14 +42,26 @@ class BookOrder extends React.Component {
               <Col
                 span={6}
               >
-                <Badge.Ribbon text={bookOrder.status} color={color[bookOrder.status]} style={{top:20,width:82}}>
+                <Badge.Ribbon 
+                  text={bookOrder.status} 
+                  color={color[bookOrder.status]} 
+                  style={{top:20,width:82}}
+                >
                   <Tooltip title={bookOrder.address} color="blue">
                     <Card
                       hoverable
                       style={{ barground: '#ffffff', padding: '0 23px', margin: '20px',
                       textAlign: 'left' }}
                       title={bookOrder.address}
-                      extra={<Tag style={{ right: 30, display: bookOrder.parkingType ==="lots" ? "none" : "block" }} color="blue">{bookOrder.parkingType}</Tag>}
+                      extra={(
+                        <Tag
+                          style={{ right: 30, 
+                            display: bookOrder.parkingType ==="lots" ? "none" : "block" }} 
+                          color="blue"
+                        >
+                          {bookOrder.parkingType}
+                        </Tag>
+          )}
                     >
 
                       <Descriptions>

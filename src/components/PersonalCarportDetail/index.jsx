@@ -1,16 +1,18 @@
 import React from 'react'
-import { LeftOutlined, CheckOutlined } from '@ant-design/icons/lib'
+import { LeftOutlined } from '@ant-design/icons/lib'
 import { Card, Row, Col, Form, Button, Popconfirm, message, Badge } from 'antd'
 import PropTypes from 'prop-types'
 import './PersonalCarportDetail.css'
 import parkingLot from '../../static/picture/parkingLot.png'
 import { getOrderById } from '../../api/RentOrder'
-import { newPersonalBookOrder } from '../../api/index'
+import { newPersonalBookOrder , getSeckillResult} from '../../api/index'
+import newSeckillOrder from '../../api/Seckill'
 
 class PersonalCarportDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      isDisabled: false,
       parkingLotInfo: {}
     }
   }
@@ -27,8 +29,7 @@ class PersonalCarportDetail extends React.Component {
     //     rentEndDate: '2020-09-11'
     //   }
     // })
-
-    const personalId = 4
+    const personalId = 48
     getOrderById(personalId).then((res)=>{
       if(res.status === 200){
         this.setState({
@@ -38,7 +39,7 @@ class PersonalCarportDetail extends React.Component {
     })
   }
 
-  confirm = () => {
+  confirmBook = () => {
     const bookOrder = {
       userId: 9,
       parkingId: this.state.parkingLotInfo.id,
@@ -59,6 +60,43 @@ class PersonalCarportDetail extends React.Component {
     })
   }
 
+  tick = (seckillOrder) => {
+    getSeckillResult(seckillOrder.rentId).then((res) => {
+        if(res.data.data === null){
+          const hide = message.loading('Seckill in progress..', 0)
+          setTimeout(hide, 2500)
+        }else if(res.data.data.userId === seckillOrder.userId){
+            message.success(`Seckill success!`)
+            this.props.history.push('/bookOrder')
+          }
+          else{
+            message.error(`Seckill fail! This carport is booked`)
+          }
+    })
+  }
+
+  confirmSeckill = () => {
+    const seckillOrder = {
+      userId: 9,
+      rentId: this.state.parkingLotInfo.id
+    }
+    newSeckillOrder(seckillOrder).then((res) => {
+      if (res.status === 201) {
+        message.success(`Submit success, please wait a second~`)
+        this.interval = setInterval(() => this.tick(seckillOrder), 1000)
+      } else {
+        message.error('Unkonwn error.')
+      }
+    })
+    this.setState({
+      isDisabled: true
+    })
+  }
+  
+  componentDidUnMount = () => {
+    clearInterval(this.interval)
+  }
+
   render() {
     return (
       <div className='ParkingLotInfo'>
@@ -75,13 +113,17 @@ class PersonalCarportDetail extends React.Component {
                 <Card style={{ width: 600, height: 350 }}>
                   <Form labelAlign='left' labelCol={{ span: 7 }}>
                     <Form.Item label="Address">{ this.state.parkingLotInfo.address }</Form.Item>
-                    <Form.Item label="Carport">{ this.state.parkingLotInfo.personCarport }</Form.Item>
+                    <Form.Item label="Carport">
+                      { this.state.parkingLotInfo.personCarport }
+                    </Form.Item>
                     <Form.Item label="Price">
                       ￥
                       { this.state.parkingLotInfo.price }
                       /month
                     </Form.Item>
-                    <Form.Item label="Contact">{ this.state.parkingLotInfo.contactPerson }</Form.Item>
+                    <Form.Item label="Contact">
+                      { this.state.parkingLotInfo.contactPerson }
+                    </Form.Item>
                     <Form.Item label="Carport Phone">
                       { this.state.parkingLotInfo.contactNumber}
                     </Form.Item>
@@ -96,17 +138,41 @@ class PersonalCarportDetail extends React.Component {
             </Col>
           </Row>
         </div>
-        <Popconfirm 
-          placement="top" 
-          title="Are you sure this information is correct ?" 
-          onConfirm={this.confirm} 
-          okText="Yes" 
-          cancelText="No"
-        >
-          <Button type="primary" icon={<CheckOutlined />} size="large" style={{ marginLeft: 500 }}>
-            Book
-          </Button>
-        </Popconfirm>
+        <div style={{display:"flex",justifyContent:"center"}}>
+          <Popconfirm 
+            placement="top" 
+            title="Are you sure this information is correct ?" 
+            onConfirm={this.state.parkingLotInfo.seckill === 0?
+              this.confirmBook:this.confirmSeckill} 
+            okText="Yes" 
+            cancelText="No"
+            disabled={this.state.isDisabled}
+          >
+          
+            {this.state.parkingLotInfo.seckill === 0 ? (
+              <Button
+                type="primary" 
+                size="large" 
+                style={{ fontWeight: "bold", width: "500px", fontSize: "28px", height: "60px" }}
+              >
+                Book!
+              </Button>
+              )
+                : (
+                  <Button 
+                    type="primary" 
+                    size="large" 
+                    disabled={this.state.isDisabled} 
+                    style={{ 
+                      fontWeight: "bold", width: "500px", fontSize: "28px", height: "60px" }} 
+                    danger
+                  >
+                    Seckill!
+                  </Button>
+              )}
+          
+          </Popconfirm>
+        </div>
       </div>
     )
   }
@@ -114,7 +180,8 @@ class PersonalCarportDetail extends React.Component {
 
 PersonalCarportDetail.propTypes = {
 	startTime: PropTypes.number.isRequired,
-	endTime: PropTypes.number.isRequired
+  endTime: PropTypes.number.isRequired,
+  history: PropTypes.objectOf(PropTypes.func).isRequired
 }
 
 export default PersonalCarportDetail

@@ -28,7 +28,8 @@ class SearchBar extends React.Component {
 
 	componentDidMount() {
 		this.setState({
-      isDisableSearchButton: this.state.dates.length === 0 || !this.state.city || !this.state.address,
+	  isDisableSearchButton: 
+	  this.state.dates.length === 0 || !this.state.city || !this.state.address,
       isChooseDate: this.state.dates.length !== 0,
       isChooseDestination: this.state.city !== '' && this.state.address !== ''
 		})
@@ -151,7 +152,12 @@ class SearchBar extends React.Component {
       onChange={this.onChange}
       onOk={this.onOk}
     />
-    <Button type="primary" icon={<SearchOutlined />} disabled={this.state.isDisableSearchButton} onClick={this.buttonOnClick}>
+    <Button 
+      type="primary" 
+      icon={<SearchOutlined />} 
+      disabled={this.state.isDisableSearchButton} 
+      onClick={this.buttonOnClick}
+    >
       Search
     </Button>
   </Space>
