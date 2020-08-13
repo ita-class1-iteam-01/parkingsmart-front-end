@@ -8,3 +8,18 @@
     padding: 0 200px;
 }
 
+.parkingLotList {
+  height: calc(100% - 90px);
+}
+
+.parkingLotList .ant-tabs {
+  height: 100%;
+}
+
+div[role="tab"] {
+  font-size: 20px;
+}
+
+.ant-tabs-nav-list {
+  left: -630px;
+}

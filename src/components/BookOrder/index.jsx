@@ -73,7 +73,7 @@ class BookOrder extends React.Component {
                           {moment(bookOrder.reservationStartTime).format(
                             'YYYY-MM-DD HH:mm').toLocaleString()}
                           {' - '}
-                          {moment(bookOrder.reservationEndTimenew).format(
+                          {moment(bookOrder.reservationEndTime).format(
                             'YYYY-MM-DD HH:mm').toLocaleString()}
                         </Descriptions.Item>
 

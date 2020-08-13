@@ -179,7 +179,7 @@ class RentCarportForm extends React.Component{
                   </Form.Item>
                   <Form.Item>
                     <Button type="primary" htmlType="submit" onClick={this.submit}>
-                      Rent
+                      Publish
                     </Button>
                   </Form.Item>
                 </Form>

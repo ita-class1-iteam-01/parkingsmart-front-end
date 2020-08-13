@@ -130,12 +130,12 @@ class SearchBar extends React.Component {
 	isComplete = () =>{
 		this.setState({
 			isDisableSearchButton: !(this.state.isChooseDate && this.state.isChooseDestination)
-		})
+    })
 	}
 	
 	render() {    
 		return (
-  <Space>
+  <Space className="searchBar">
     <CityPosition chooseCity={this.chooseCity} value={this.state.city} />
     <SearchCity
       address={this.state.address}
@@ -170,7 +170,7 @@ SearchBar.propTypes = {
 	address:PropTypes.objectOf(PropTypes.string).isRequired,
 	updateDate: PropTypes.func.isRequired,
 	updateAddress: PropTypes.func.isRequired,
-	search: PropTypes.func.isRequired
+  search: PropTypes.func.isRequired
 }
 
 export default SearchBar

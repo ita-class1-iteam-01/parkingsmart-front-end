@@ -3,13 +3,18 @@ import PropTypes from 'prop-types'
 import SearchBarContainer from '../../containers/SearchBarContainer'
 import ParkingLotListContainer from '../../containers/ParkingLotListContainer'
 import { COMMAND_CODE, webSocket} from '../../websocket'
+import './index.css'
 
 class Book extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            socket: webSocket
+            socket: webSocket,
+            searched: false
         }
+    }
+
+    searchPersonal = () => {
     }
 
     search = (data, dateList) => {
@@ -25,15 +30,22 @@ class Book extends React.Component {
             data:JSON.stringify(parms)
         }
         this.state.socket.send(JSON.stringify(packet))
+        this.setState({
+          searched: true
+        })
     }
 
     render() {
         return (
-          <div>
+          <div className="book">
             <SearchBarContainer search={this.search} />
             <ParkingLotListContainer 
-              list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList} 
-              history={this.props.history} 
+              searched={this.state.searched}
+              searchPersonal={this.searchPersonal} 
+              personalParkingPortList={this.props.personalParkingPortList===undefined? [] : 
+                this.props.personalParkingPortList} 
+              list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList}
+              history={this.props.history}
             />
           </div>
         )
@@ -42,7 +54,8 @@ class Book extends React.Component {
 
 Book.propTypes = {
   parkingLotList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  history: PropTypes.objectOf(PropTypes.object).isRequired
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
+  personalParkingPortList: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Book

@@ -19,3 +19,11 @@ export const updateAddress = (address) => {
         address: address
     }
 }
+
+export const savePersonal = (personalParkingPortList) => {
+    console.log(personalParkingPortList)
+    return{
+        type: "SAVE_PERSONAL",
+        personalParkingPortList: personalParkingPortList
+    }
+}
