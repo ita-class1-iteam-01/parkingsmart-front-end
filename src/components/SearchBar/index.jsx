@@ -19,7 +19,9 @@ class SearchBar extends React.Component {
 			city: props.address ? props.address.city : '',
 			address: props.address ? props.address.address : '',
 			currentHour: null,
-			data: {},
+			data: props.address ? {
+				location: `${props.address.longitude  },${  props.address.latitude}`
+			} : {},
 			dates: props.dateList.length !== 0 ? props.dateList : []
 		}
 	}
@@ -36,7 +38,9 @@ class SearchBar extends React.Component {
 		this.props.search(this.state.data, this.state.dates)
 		this.props.updateAddress({
 			city: this.state.city,
-			address: this.state.data.name
+			address: this.state.data.name,
+			latitude: this.state.data.location.split(',')[1],
+			longitude: this.state.data.location.split(',')[0]
 		})
 	}
 

@@ -4,7 +4,7 @@ import './index.css'
 import { createStore } from "redux"
 import { Provider } from "react-redux"
 import reducer from "./reducers/index"
-import App from './App'
+import AppContainer from './containers/AppContainer'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
 
@@ -15,7 +15,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>
   ,document.getElementById('root')
 )
