@@ -1,9 +1,11 @@
 import React from 'react'
-import { message,Button,Form, Input, DatePicker, Row, Col, Card} from 'antd'
+import { message,Button,Form, Input, DatePicker, Row, Col, Card, Switch, Tooltip} from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import CityPosition from '../CityPosition'
 import SearchCity from '../SearchCity'
-import {newRentOrder} from '../../api'
+import { newRentOrder } from '../../api'
 import './index.css'
 
 const {RangePicker} = DatePicker
@@ -22,6 +24,7 @@ class RentCarportForm extends React.Component{
             price: 0,
             contact:'',
             contactNumber:'',
+            seckilling:false,
             formRef: React.createRef()
 		}
 	}
@@ -63,6 +66,10 @@ class RentCarportForm extends React.Component{
     handleContactNumberChange = (event) => {
       this.state.contactNumber = event.target.value
     }
+
+    handleseckillChange = (isseckill) => {
+      this.setState({seckilling: isseckill})
+    }
     
     validatePrice = (rule, value, callback) => {
         const numberPattern = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
@@ -81,7 +88,7 @@ class RentCarportForm extends React.Component{
   }
 
   disabledDate = (current) => {
-		return current < moment().startOf('days')
+		return current < moment().add(0, 'months')
   }
 
     submit = async () => {
@@ -97,11 +104,13 @@ class RentCarportForm extends React.Component{
           rentEndDate: this.state.rentPeriod[1],
           price: this.state.price,
           contactPerson:this.state.contact,
-          contactNumber:this.state.contactNumber
+          contactNumber:this.state.contactNumber,
+          seckilling:this.state.seckilling
         }
         newRentOrder(order).then(res => {
           if(res.data.code === 0){
             message.success(res.data.msg)
+            this.props.history.push({pathname:'/rentOrder'})
           }else {
             message.error(res.data.msg)
           }
@@ -140,18 +149,32 @@ class RentCarportForm extends React.Component{
                     <Input onChange={this.handleCarportChange} allowClear placeholder="Please type your carport, eg: X1Y2" />
                   </Form.Item>
         
-                  <Form.Item label="Rent period" name="period" style={{ marginBottom: 0 }} rules={[{required:true, message:"Please type rent period"}]}>
+                  <Form.Item label="Rent Time" name="period" style={{ marginBottom: 0 }} rules={[{required:true, message:"Please type rent period"}]}>
                     <RangePicker onChange={this.handleDateChange} disabledDate={this.disabledDate} format="YYYY-MM-01" picker="month" className="rent-card-date" />
                   </Form.Item>
     
-                  <Form.Item label="Price" name="price" hasFeedback rules={[{required:true,message:"Please type monthly rent"},{validator: this.validatePrice}]}>
+                  <Form.Item label="Rent" name="rent" hasFeedback rules={[{required:true,message:"Please type monthly rent"},{validator: this.validatePrice}]}>
                     <Input onChange={this.handlePriceChange} allowClear suffix="RMB / Month" placeholder="Please type monthly rent" />
                   </Form.Item>
-                  <Form.Item label="Contact" name="contact" hasFeedback rules={[{required:true, message:"Please type your name"}]}>
+                  <Form.Item label="Contact Name" name="contact" hasFeedback rules={[{required:true, message:"Please type your name"}]}>
                     <Input onChange={this.handleContactChange} allowClear placeholder="Please type your name" />
                   </Form.Item>    
                   <Form.Item label="Contact Phone" name="contactPhone" hasFeedback rules={[{required:true, message:"Please type your phone number"},{validator:this.validateContactNumber}]}>
                     <Input onChange={this.handleContactNumberChange} allowClear placeholder="Please type your phone number" />
+                  </Form.Item>
+                  <Form.Item
+                    label={(
+                      <span>
+                        <Tooltip title="Join the seckill to rent out your carport faster" placement="left" color="blue">
+                          <QuestionCircleOutlined />
+                        </Tooltip>
+&nbsp;&nbsp;&nbsp;Seckill
+                      </span>
+)}
+                    name="seckill"
+                  >
+                  
+                    <Switch onChange={this.handleseckillChange} defaultChecked={false} checkedChildren="On" unCheckedChildren="Off" />
                   </Form.Item>
                   <Form.Item>
                     <Button type="primary" htmlType="submit" onClick={this.submit}>
@@ -164,6 +187,9 @@ class RentCarportForm extends React.Component{
           </Row>
         )
     }
+}
+RentCarportForm.propTypes = {
+  history: PropTypes.objectOf(PropTypes.func).isRequired
 }
 
 export default RentCarportForm

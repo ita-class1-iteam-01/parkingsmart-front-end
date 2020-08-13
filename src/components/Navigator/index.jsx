@@ -1,7 +1,7 @@
 import React from 'react'
 import { Menu,Dropdown , Row, Col } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
-import { HashRouter, Route, Link, Switch } from 'react-router-dom'
+import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import BookContainer from '../../containers/BookContainer'
 import ParkingLotInfoContainer from '../../containers/ParkingLotInfoContainer'
 import RentCarportForm from '../RentCarportForm'
@@ -21,10 +21,10 @@ class Navigator extends React.Component {
         const menu = (
           <Menu>
             <Menu.Item>
-              <Link to="/bookOrder">book order</Link>             
+              <Link to="/bookOrder">Book order</Link>             
             </Menu.Item>
             <Menu.Item>
-              <Link to="/rentOrder">rent order</Link>
+              <Link to="/rentOrder">Rent order</Link>
             </Menu.Item>
           </Menu>
           )
@@ -56,6 +56,7 @@ class Navigator extends React.Component {
               <Route exact path="/parkingLotInfo" component={ParkingLotInfoContainer} />
               <Route exact path="/rentOrder" component={RentOrderList} />
               <Route exact path="/bookOrder" component={BookOrder} />
+              <Route exact path="/" render={() => <Redirect to="/book" />} />
             </Switch>
           </HashRouter>
         )
