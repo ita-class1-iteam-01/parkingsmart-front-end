@@ -15,3 +15,11 @@
 .parkingLotList .ant-tabs {
   height: 100%;
 }
+
+div[role="tab"] {
+  font-size: 20px;
+}
+
+.ant-tabs-nav-list {
+  left: -630px;
+}

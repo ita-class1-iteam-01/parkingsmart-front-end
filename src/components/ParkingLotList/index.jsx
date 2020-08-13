@@ -81,7 +81,15 @@ class ParkingLotList extends React.Component {
       )      
     }
  
-    const {personalParkingPortList} = this.props
+    let {personalParkingPortList} = this.props
+    personalParkingPortList = [
+      {
+        address: 'address',
+        startTime: '2020-08-01',
+        endTime: '2020-09-01',
+        price: 500
+      }
+    ]
     let PersonalParkingPortList
     if (personalParkingPortList.length === 0) {
       PersonalParkingPortList = (
@@ -137,14 +145,20 @@ class ParkingLotList extends React.Component {
 
     return (
       <div className="parkingLotList">
-        <Tabs defaultActiveKey="1" centered style={{margin: "20px"}} onChange={this.onTypeChange}>
-          <TabPane tab="Lots" key="1">
-            {Message}
-          </TabPane>
-          <TabPane tab="Personal" key="2">
-            {PersonalParkingPortList}
-          </TabPane>
-        </Tabs>
+        {
+          this.props.searched ? (
+            <Tabs defaultActiveKey="1" centered style={{margin: "20px"}} onChange={this.onTypeChange}>
+              <TabPane tab="Lots" key="1">
+                {Message}
+              </TabPane>
+              <TabPane tab="Personal" key="2">
+                {PersonalParkingPortList}
+              </TabPane>
+            </Tabs>
+        )
+          : 
+            <div />
+        }
       </div>
     )
   }
@@ -154,7 +168,8 @@ ParkingLotList.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.objectOf(PropTypes.object).isRequired,
   personalParkingPortList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  searchPersonal: PropTypes.func.isRequired
+  searchPersonal: PropTypes.func.isRequired,
+  searched: PropTypes.bool.isRequired
 }
 
 export default ParkingLotList

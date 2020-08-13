@@ -129,7 +129,7 @@ class SearchBar extends React.Component {
 	isComplete = () =>{
 		this.setState({
 			isDisableSearchButton: !(this.state.isChooseDate && this.state.isChooseDestination)
-		})
+    })
 	}
 	
 	render() {    
@@ -164,7 +164,7 @@ SearchBar.propTypes = {
 	address:PropTypes.objectOf(PropTypes.string).isRequired,
 	updateDate: PropTypes.func.isRequired,
 	updateAddress: PropTypes.func.isRequired,
-	search: PropTypes.func.isRequired
+  search: PropTypes.func.isRequired
 }
 
 export default SearchBar

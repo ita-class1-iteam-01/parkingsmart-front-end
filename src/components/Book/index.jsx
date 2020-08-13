@@ -9,11 +9,10 @@ class Book extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            socket: webSocket
+            socket: webSocket,
+            searched: false
         }
     }
-
-    
 
     searchPersonal = () => {
     }
@@ -31,6 +30,9 @@ class Book extends React.Component {
             data:JSON.stringify(parms)
         }
         this.state.socket.send(JSON.stringify(packet))
+        this.setState({
+          searched: true
+        })
     }
 
     render() {
@@ -38,6 +40,7 @@ class Book extends React.Component {
           <div className="book">
             <SearchBarContainer search={this.search} />
             <ParkingLotListContainer 
+              searched={this.state.searched}
               searchPersonal={this.searchPersonal} 
               personalParkingPortList={this.props.personalParkingPortList===undefined? [] : this.props.personalParkingPortList} 
               list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList}
