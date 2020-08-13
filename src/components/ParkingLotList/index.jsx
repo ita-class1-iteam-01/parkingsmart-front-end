@@ -1,7 +1,8 @@
 import React from 'react'
-import { Card, Row, Col, Button, Empty, Descriptions,Tabs  } from 'antd'
+import { Card, Row, Col, Button, Empty, Descriptions,Tabs, Tag  } from 'antd'
 import PropTypes from 'prop-types'
 import moment from 'moment'
+import CountDown from '../CountDown'
 import "./ParkingLotList.css"
 
 
@@ -117,6 +118,7 @@ class ParkingLotList extends React.Component {
                   hoverable
                   style={{ barground: '#ffffff', margin: '20px', textAlign: 'left' }}
                   title={parkinglot.address}
+                  extra={<Tag style={{ display: !parkinglot.seckilling ? "none" : "block" }} color="#cd201f">Seckilling</Tag>}
                 >
                   <Descriptions>
                     <Descriptions.Item span={3} label="Time">
@@ -130,6 +132,7 @@ class ParkingLotList extends React.Component {
                       /month
                     </Descriptions.Item>
                   </Descriptions>
+                  <CountDown creationTime={parkinglot.creationTime} style={{ display: !parkinglot.seckilling ? "none" : "block" }} />
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button
                       onClick={() => this.toPersonalParkingLot(parkinglot)}
