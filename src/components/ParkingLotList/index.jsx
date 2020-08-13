@@ -136,7 +136,7 @@ class ParkingLotList extends React.Component {
     }
 
     return (
-      <div>
+      <div className="parkingLotList">
         <Tabs defaultActiveKey="1" centered style={{margin: "20px"}} onChange={this.onTypeChange}>
           <TabPane tab="Lots" key="1">
             {Message}

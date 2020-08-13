@@ -8,3 +8,10 @@
     padding: 0 200px;
 }
 
+.parkingLotList {
+  height: calc(100% - 90px);
+}
+
+.parkingLotList .ant-tabs {
+  height: 100%;
+}

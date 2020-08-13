@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import SearchBarContainer from '../../containers/SearchBarContainer'
 import ParkingLotListContainer from '../../containers/ParkingLotListContainer'
 import { COMMAND_CODE, webSocket} from '../../websocket'
+import './index.css'
 
 class Book extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class Book extends React.Component {
 
     render() {
         return (
-          <div>
+          <div className="book">
             <SearchBarContainer search={this.search} />
             <ParkingLotListContainer 
               searchPersonal={this.searchPersonal} 

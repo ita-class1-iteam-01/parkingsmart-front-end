@@ -5,4 +5,4 @@ export const COMMAND_CODE = {
     PAGE_PERSONAL_RESPONSE:4
 }
 
-export const webSocket = new WebSocket("ws:/10.222.29.148:8090/parkingws")
+export const webSocket = new WebSocket("ws:/10.222.29.148:8090/parkingws/1")

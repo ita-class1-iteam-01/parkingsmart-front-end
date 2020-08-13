@@ -26,3 +26,7 @@
   height: calc(100vh - 72px);
   padding-top: 30px;
 }
+
+.main > div {
+  height: 100%;
+}

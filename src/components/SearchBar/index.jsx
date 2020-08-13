@@ -134,7 +134,7 @@ class SearchBar extends React.Component {
 	
 	render() {    
 		return (
-  <Space>
+  <Space className="searchBar">
     <CityPosition chooseCity={this.chooseCity} value={this.state.city} />
     <SearchCity
       address={this.state.address}
