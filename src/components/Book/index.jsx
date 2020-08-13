@@ -12,6 +12,11 @@ class Book extends React.Component {
         }
     }
 
+    
+
+    searchPersonal = () => {
+    }
+
     search = (data, dateList) => {
         const parms =  {
             latitude: data.location.split(',')[1],
@@ -31,7 +36,12 @@ class Book extends React.Component {
         return (
           <div>
             <SearchBarContainer search={this.search} />
-            <ParkingLotListContainer list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList} history={this.props.history} />
+            <ParkingLotListContainer 
+              searchPersonal={this.searchPersonal} 
+              personalParkingPortList={this.props.personalParkingPortList===undefined? [] : this.props.personalParkingPortList} 
+              list={this.props.parkingLotList.length === 0 ? [] : this.props.parkingLotList}
+              history={this.props.history}
+            />
           </div>
         )
     }
@@ -39,7 +49,8 @@ class Book extends React.Component {
 
 Book.propTypes = {
   parkingLotList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  history: PropTypes.objectOf(PropTypes.object).isRequired
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
+  personalParkingPortList: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Book
