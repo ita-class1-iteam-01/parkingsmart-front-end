@@ -18,6 +18,7 @@
 
 div[role="tab"] {
   font-size: 20px;
+  font-weight: 700;
 }
 
 .ant-tabs-nav-list {
