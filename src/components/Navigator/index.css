@@ -25,6 +25,9 @@
 .main {
   height: calc(100vh - 72px);
   padding-top: 30px;
+  background: url('/mainbg.png');
+  background-size: 100% 100%;
+
 }
 
 .main > div {
