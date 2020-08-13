@@ -32,7 +32,9 @@ class Navigator extends React.Component {
           <HashRouter>
             <Row className="nav">
               <Col span={3}>
-                <img src="/logo.png" height={48} alt="logo" className="logo" />
+                <Link to="/book">
+                  <img src="/logo.png" height={48} alt="logo" className="logo" />
+                </Link>
               </Col>
               <Col span={12}>
                 <Menu defaultSelectedKeys={["book"]} mode="horizontal" className="nav-tab">

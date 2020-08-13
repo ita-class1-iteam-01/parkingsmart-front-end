@@ -98,7 +98,7 @@ class PersonalCarportDetail extends React.Component {
         </div>
         <Popconfirm 
           placement="top" 
-          title="Are you sure?" 
+          title="Are you sure this information is correct ?" 
           onConfirm={this.confirm} 
           okText="Yes" 
           cancelText="No"
