@@ -39,7 +39,7 @@ class ParkingLotInfo extends React.Component {
         message.error('Book fail, the selected time slot parking space is full!')
       } else {
         message.success(`Book successfully, the car port is ${res.data.data.carPort}`)
-        this.props.history.goBack()
+        this.props.history.push('/bookOrder')
       }
     })
   }
