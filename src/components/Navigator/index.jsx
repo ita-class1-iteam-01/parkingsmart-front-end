@@ -52,14 +52,17 @@ class Navigator extends React.Component {
                 </Dropdown>
               </Col>
             </Row>
-            <Switch>
-              <Route exact path="/book" component={BookContainer} />
-              <Route exact path="/rent" component={RentCarportForm} />
-              <Route exact path="/parkingLotInfo" component={ParkingLotInfoContainer} />
-              <Route exact path="/rentOrder" component={RentOrderList} />
-              <Route exact path="/bookOrder" component={BookOrder} />
-              <Route exact path="/" render={() => <Redirect to="/book" />} />
-            </Switch>
+            <div className="main">
+              <Switch>
+                <Route exact path="/book" component={BookContainer} />
+                <Route exact path="/rent" component={RentCarportForm} />
+                <Route exact path="/parkingLotInfo" component={ParkingLotInfoContainer} />
+                <Route exact path="/rentOrder" component={RentOrderList} />
+                <Route exact path="/bookOrder" component={BookOrder} />
+                <Route exact path="/" render={() => <Redirect to="/book" />} />
+              </Switch>
+            </div>
+            
           </HashRouter>
         )
     }

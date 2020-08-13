@@ -21,3 +21,8 @@
   margin-top: 15px;
   border: grey solid 1px;
 }
+
+.main {
+  height: calc(100vh - 72px);
+  padding-top: 30px;
+}
