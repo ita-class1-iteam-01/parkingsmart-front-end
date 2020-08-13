@@ -1,6 +1,6 @@
 import React from 'react'
 import { message,Button,Form, Input, DatePicker, Row, Col, Card, Switch, Tooltip} from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { QuestionCircleTwoTone } from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import CityPosition from '../CityPosition'
@@ -80,7 +80,7 @@ class RentCarportForm extends React.Component{
     }
 
     validateContactNumber = (rule, value, callback) => {
-      const numberPattern = /^((\+|00)86)?((134\d{4})|((13[0-3|5-9]|14[1|5-9]|15[0-9]|16[2|5|6|7]|17[0-8]|18[0-9]|19[0-2|5-9])\d{8}))$/
+      const numberPattern = /^((\+|00)86)?(((13[0-9]|14[1|5-9]|15[0-9]|16[2|5|6|7]|17[0-8]|18[0-9]|19[0-2|5-9])\d{8}))$/
       if(numberPattern.test(Number(value)) || value === '' || value === undefined){
         callback()
       } 
@@ -166,7 +166,7 @@ class RentCarportForm extends React.Component{
                     label={(
                       <span>
                         <Tooltip title="Join the seckill to rent out your carport faster" placement="left" color="blue">
-                          <QuestionCircleOutlined />
+                          <QuestionCircleTwoTone  />
                         </Tooltip>
 &nbsp;&nbsp;&nbsp;Seckill
                       </span>
