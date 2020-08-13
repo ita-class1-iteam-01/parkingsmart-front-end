@@ -27,7 +27,8 @@ class PersonalCarportDetail extends React.Component {
         price: parkingCarSpace.price,
         address: parkingCarSpace.address,
         rentStartDate: moment(parkingCarSpace.rentStartDate).format('yyyy-MM-DD'),
-        rentEndDate: moment(parkingCarSpace.rentEndDate).format('yyyy-MM-DD')      }
+        rentEndDate: moment(parkingCarSpace.rentEndDate).format('yyyy-MM-DD')
+      }
     })
   }
 
