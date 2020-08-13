@@ -1,4 +1,4 @@
-const savePersonal = (state = [], action) => {
+const personalParkingPortList = (state = [], action) => {
     switch(action.type){
         case "SAVE_PERSONAL" : 
             return action.personalParkingPortList
@@ -7,4 +7,4 @@ const savePersonal = (state = [], action) => {
     }
 }
 
-export default savePersonal
+export default personalParkingPortList

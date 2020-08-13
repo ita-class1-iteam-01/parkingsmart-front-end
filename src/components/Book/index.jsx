@@ -10,8 +10,35 @@ class Book extends React.Component {
         super(props)
         this.state = {
             socket: webSocket,
-            searched: false
+            searched: false,
+            key: "1",
+            parms: {}
         }
+    }
+
+    componentDidMount() {
+      if (this.props.personalParkingPortList.length !== 0 || this.props.parkingLotList.length !== 0) {
+        this.setState({
+          searched: true
+        })
+      }
+    }
+
+    keyChange = (key) => {
+      this.setState({
+        key
+      })
+      if (key === '2' && this.props.personalParkingPortList.length === 0) {
+        const packet = {
+          version:1,
+          command: COMMAND_CODE.PAGE_PERSONAL_REQUEST,
+          data:JSON.stringify(this.state.parms)
+        }
+        this.state.socket.send(JSON.stringify(packet))
+        this.setState({
+          searched: true
+        })
+      }
     }
 
     searchPersonal = () => {
@@ -24,9 +51,12 @@ class Book extends React.Component {
             startTime: dateList[0],
             endTime: dateList[1]
         }
+        this.setState({
+          parms
+        })
         const packet = {
             version:1,
-            command:COMMAND_CODE.PAGE_REQUEST,
+            command: this.state.key === '1' ? COMMAND_CODE.PAGE_REQUEST : COMMAND_CODE.PAGE_PERSONAL_REQUEST,
             data:JSON.stringify(parms)
         }
         this.state.socket.send(JSON.stringify(packet))
@@ -39,7 +69,8 @@ class Book extends React.Component {
         return (
           <div className="book">
             <SearchBarContainer search={this.search} />
-            <ParkingLotListContainer 
+            <ParkingLotListContainer
+              keyChange={this.keyChange} 
               searched={this.state.searched}
               searchPersonal={this.searchPersonal} 
               personalParkingPortList={this.props.personalParkingPortList===undefined? [] : 

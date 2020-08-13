@@ -18,6 +18,8 @@ class App extends React.Component {
           // 说明是登陆的返回消息
           if(response.command === COMMAND_CODE.PAGE_RESPONSE){
             this.props.saveParkingLotList(JSON.parse(response.data).page)
+          } else if(response.command === COMMAND_CODE.PAGE_PERSONAL_RESPONSE) {
+            this.props.savePersonalParkingPortList(JSON.parse(response.data).pagePersonal)
           }
       }
   }
@@ -32,7 +34,8 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  saveParkingLotList: PropTypes.func.isRequired
+  saveParkingLotList: PropTypes.func.isRequired,
+  savePersonalParkingPortList: PropTypes.func.isRequired
 }
 
 export default App

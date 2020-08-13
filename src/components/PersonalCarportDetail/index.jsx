@@ -1,7 +1,7 @@
 import React from 'react'
-import { LeftOutlined } from '@ant-design/icons/lib'
-import { Card, Row, Col, Form, Button, Popconfirm, message, Badge } from 'antd'
+import { Card, Row, Col, Form, Button, Popconfirm, message, Badge, PageHeader } from 'antd'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import './PersonalCarportDetail.css'
 import parkingLot from '../../static/picture/parkingLot.png'
 import { getOrderById } from '../../api/RentOrder'
@@ -18,25 +18,25 @@ class PersonalCarportDetail extends React.Component {
   }
 
   componentDidMount() {
-    // this.setState({
-    //   parkingLotInfo: {
-    //     carport: 'A101',
-    //     contact: 'Miss Yang',
-    //     contactPhone: '13766',
-    //     price: 300,
-    //     address: 'ZHA, Southern Software Park',
-    //     rentStartDate: '2020-08-11',
-    //     rentEndDate: '2020-09-11'
-    //   }
-    // })
-    const personalId = 48
-    getOrderById(personalId).then((res)=>{
+    const parkingCarSpace = this.props.location.query.parkinglot
+    this.setState({
+      parkingLotInfo: {
+        id: parkingCarSpace.id,
+        personCarport: parkingCarSpace.personCarport,
+        contactPerson: parkingCarSpace.contactPerson,
+        contactNumber: parkingCarSpace.contactNumber,
+        price: parkingCarSpace.price,
+        address: parkingCarSpace.address,
+        rentStartDate: moment(parkingCarSpace.rentStartDate).format('yyyy-MM-DD'),
+        rentEndDate: moment(parkingCarSpace.rentEndDate).format('yyyy-MM-DD')
+      }}
+    )
+    getOrderById(parkingCarSpace.id).then((res)=>{
       if(res.status === 200){
         this.setState({
           parkingLotInfo: res.data.data
         })
-      }
-    })
+    }})
   }
 
   confirmBook = () => {
@@ -100,9 +100,7 @@ class PersonalCarportDetail extends React.Component {
   render() {
     return (
       <div className='ParkingLotInfo'>
-        <div className='Title'>
-          <LeftOutlined style={{ height: 50 }} />
-        </div>
+        <PageHeader onBack={() => this.props.history.goBack()} title="Back" />
         <div className='InfoDiv'>
           <Row gutter='70'>
             <Col>
@@ -181,6 +179,7 @@ class PersonalCarportDetail extends React.Component {
 PersonalCarportDetail.propTypes = {
 	startTime: PropTypes.number.isRequired,
   endTime: PropTypes.number.isRequired,
+  location: PropTypes.objectOf(PropTypes.func).isRequired,
   history: PropTypes.objectOf(PropTypes.func).isRequired
 }
 
