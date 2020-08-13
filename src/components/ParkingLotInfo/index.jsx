@@ -79,7 +79,7 @@ class ParkingLotInfo extends React.Component {
         </div>
         <Popconfirm 
           placement="top" 
-          title="Sure?" 
+          title="Confirm reservation?" 
           onConfirm={this.confirm} 
           okText="Yes" 
           cancelText="No"
