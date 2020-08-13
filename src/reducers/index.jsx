@@ -2,12 +2,12 @@ import { combineReducers } from 'redux'
 import dateList from './date'
 import address from './address'
 import parkingLotList from './parkingLotList'
-import savePersonal from './savePersonal'
+import personalParkingPortList from './personalParkingPortList'
 
 const reducer = combineReducers({
     dateList,
     address,
     parkingLotList,
-    savePersonal
+    personalParkingPortList
 })
 export default reducer

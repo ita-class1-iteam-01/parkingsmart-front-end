@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Row, Col, Button, Empty, Descriptions,Tabs  } from 'antd'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import "./ParkingLotList.css"
 
 
@@ -26,6 +27,7 @@ class ParkingLotList extends React.Component {
     if(Number(key) === 2) {
       this.props.searchPersonal()
     }
+    this.props.keyChange(key)
   }
 
   render() {
@@ -81,17 +83,8 @@ class ParkingLotList extends React.Component {
       )      
     }
  
-    let {personalParkingPortList} = this.props
-    personalParkingPortList = [
-      {
-        address: 'address',
-        startTime: '2020-08-01',
-        endTime: '2020-09-01',
-        price: 500
-      }
-    ]
     let PersonalParkingPortList
-    if (personalParkingPortList.length === 0) {
+    if (!this.props.personalParkingPortList || this.props.personalParkingPortList.length === 0) {
       PersonalParkingPortList = (
         <Empty
           className="empty"
@@ -103,7 +96,7 @@ class ParkingLotList extends React.Component {
         <Row
           className="row"
         >
-          {personalParkingPortList.map((parkinglot) => {
+          {this.props.personalParkingPortList.map((parkinglot) => {
             return (
               <Col
                 span={6}
@@ -116,9 +109,9 @@ class ParkingLotList extends React.Component {
                 >
                   <Descriptions>
                     <Descriptions.Item span={3} label="Time">
-                      {parkinglot.startTime}
+                      {moment(parkinglot.rentStartDate).format('yyyy-MM-DD')}
                       {' - '}
-                      {parkinglot.endTime}
+                      {moment(parkinglot.rentEndDate).format('yyyy-MM-DD')}
                     </Descriptions.Item>
                     <Descriptions.Item span={3} label="Price">
                       ￥
@@ -169,7 +162,8 @@ ParkingLotList.propTypes = {
   history: PropTypes.objectOf(PropTypes.object).isRequired,
   personalParkingPortList: PropTypes.arrayOf(PropTypes.object).isRequired,
   searchPersonal: PropTypes.func.isRequired,
-  searched: PropTypes.bool.isRequired
+  searched: PropTypes.bool.isRequired,
+  keyChange: PropTypes.func.isRequired
 }
 
 export default ParkingLotList

@@ -3,7 +3,8 @@ import ParkingLotList from '../components/ParkingLotList'
 
 const mapStateToProps = state => {
     return {
-      parkingLotList: state.parkingLotList
+      parkingLotList: state.parkingLotList,
+      personalParkingPortList: state.personalParkingPortList
     }
 }
 
