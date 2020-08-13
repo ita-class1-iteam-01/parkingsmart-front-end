@@ -32,7 +32,9 @@ class ParkingLotInfo extends React.Component {
       parkingId: this.props.location.query.parkinglot.id,
       parkingType: 'lots',
       reservationStartTime: this.props.startTime,
-      reservationEndTime: this.props.endTime
+      reservationEndTime: this.props.endTime,
+      latitude: this.props.address.latitude,
+			longitude: this.props.address.longitude
     }
     newBookOrder(bookOrder).then((res) => {
       if (res.data.code === 1) {
@@ -95,7 +97,8 @@ ParkingLotInfo.propTypes = {
 	startTime: PropTypes.number.isRequired,
   endTime: PropTypes.number.isRequired,
   location: PropTypes.objectOf(PropTypes.func).isRequired,
-  history: PropTypes.objectOf(PropTypes.func).isRequired
+  history: PropTypes.objectOf(PropTypes.func).isRequired,
+  address: PropTypes.objectOf(PropTypes.string).isRequired
 }
 
 export default ParkingLotInfo
