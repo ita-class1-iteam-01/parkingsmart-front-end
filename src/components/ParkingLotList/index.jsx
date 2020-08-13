@@ -22,6 +22,15 @@ class ParkingLotList extends React.Component {
       }
     })
   }
+  
+  toPersonalParkingLot = (parkinglot) => {
+    this.props.history.push({
+      pathname: '/personalCarportDetail',
+      query: {
+        parkinglot
+      }
+    })
+  }
 
   onTypeChange = (key) => {
     if(Number(key) === 2) {
@@ -121,7 +130,7 @@ class ParkingLotList extends React.Component {
                   </Descriptions>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button
-                      onClick={() => this.onClick(parkinglot)}
+                      onClick={() => this.toPersonalParkingLot(parkinglot)}
                       type="primary"
                       shape="round"
                     >
