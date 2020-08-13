@@ -15,15 +15,17 @@ class CityPositon extends React.Component {
   }
 
 	componentDidMount() {
-		getLocation().then((res) => {
-			if (res.status === 200) {
-				this.setState({
-					city: ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).withUC
-				})
-        this.props.chooseCity(
-          ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).word)
-			}
-		})
+    if (!this.props.value) {
+      getLocation().then((res) => {
+        if (res.status === 200) {
+          this.setState({
+            city: ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).withUC
+          })
+          this.props.chooseCity(
+            ConvertPinyin(res.data.city.slice(0, res.data.city.length - 1)).word)
+        }
+      })
+    }
 	}
 
   displayRender = (label) => label[label.length - 1]

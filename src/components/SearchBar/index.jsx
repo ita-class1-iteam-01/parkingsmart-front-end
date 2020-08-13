@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
 		this.setState({
       isDisableSearchButton: this.state.dates.length === 0 || !this.state.city || !this.state.address,
       isChooseDate: this.state.dates.length !== 0,
-      isChooseDestination: !this.state.city && !this.state.address
+      isChooseDestination: this.state.city !== '' && this.state.address !== ''
 		})
 	}
 
@@ -49,7 +49,7 @@ class SearchBar extends React.Component {
 		)
 		this.setState({
 			data
-		})
+    })
 	};
 
 	resetDestination = () => {
@@ -128,7 +128,7 @@ class SearchBar extends React.Component {
 		})
 	}
 	
-	render() {
+	render() {    
 		return (
   <Space>
     <CityPosition chooseCity={this.chooseCity} value={this.state.city} />
