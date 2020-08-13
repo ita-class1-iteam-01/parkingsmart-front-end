@@ -132,7 +132,8 @@ class ParkingLotList extends React.Component {
                       /month
                     </Descriptions.Item>
                   </Descriptions>
-                  <CountDown creationTime={parkinglot.creationTime} style={{ display: !parkinglot.seckilling ? "none" : "block" }} />
+                  
+                  <CountDown creationTime={parkinglot.creationTime} seckilling={parkinglot.seckilling} />
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button
                       onClick={() => this.toPersonalParkingLot(parkinglot)}

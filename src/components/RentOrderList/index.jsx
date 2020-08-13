@@ -63,9 +63,8 @@ class RentOrderList extends React.Component {
                           <Descriptions.Item span={3} label="Carport Number">
                           {rentOrder.personCarport}
                           </Descriptions.Item>
-                          <Descriptions.Item span={3} label="Total Price">
-                            ￥
-                            {rentOrder.price}
+                          <Descriptions.Item span={3} label="Price">
+                            {rentOrder.price} ￥/month
                           </Descriptions.Item>
                           <Descriptions.Item span={3} label="Date">
                             {rentOrder.rentStartDate}

@@ -19,13 +19,13 @@ class CountDown extends React.Component{
         time.setTime(time.getTime())
         this.setState({
             time,
-            isSec: time.getTime() < new Date().getTime()
+            isSec: time.getTime() >= new Date().getTime() && this.props.seckilling
         })
       }
 
     render(){
         return(
-            this.state.isSec ? <div /> : (
+            !this.state.isSec ? <div /> : (
               <Row gutter={16}>
                 <Col>
                   <Countdown id='countDown' title="秒杀" value={this.state.time} />
@@ -37,7 +37,8 @@ class CountDown extends React.Component{
 }
 
 CountDown.propTypes = {
-    creationTime: PropTypes.objectOf(PropTypes.object).isRequired
+    creationTime: PropTypes.objectOf(PropTypes.object).isRequired,
+    seckilling: PropTypes.bool.isRequired
   }
 
 export default CountDown
