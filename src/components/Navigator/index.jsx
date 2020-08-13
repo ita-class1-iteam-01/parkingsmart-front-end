@@ -7,7 +7,7 @@ import ParkingLotInfoContainer from '../../containers/ParkingLotInfoContainer'
 import RentCarportForm from '../RentCarportForm'
 import RentOrderList from '../RentOrderList'
 import BookOrder from '../BookOrder'
-import PersonalCarportDetail from '../PersonalCarportDetail'
+import PersonalCarportDetailContainer from '../../containers/PersonalCarportDetailContainer'
 import './index.css'
 
 class Navigator extends React.Component {
@@ -60,7 +60,7 @@ class Navigator extends React.Component {
                 <Route exact path="/parkingLotInfo" component={ParkingLotInfoContainer} />
                 <Route exact path="/rentOrder" component={RentOrderList} />
                 <Route exact path="/bookOrder" component={BookOrder} />
-                <Route exact path="/personalCarportDetail" component={PersonalCarportDetail} />
+                <Route exact path="/personalCarportDetail" component={PersonalCarportDetailContainer} />
                 <Route exact path="/" render={() => <Redirect to="/book" />} />
               </Switch>
             </div>

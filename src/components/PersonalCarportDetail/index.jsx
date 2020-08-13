@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import './PersonalCarportDetail.css'
 import parkingLot from '../../static/picture/parkingLot.png'
-import { getOrderById } from '../../api/RentOrder'
 import { newPersonalBookOrder , getSeckillResult} from '../../api/index'
 import newSeckillOrder from '../../api/Seckill'
 
@@ -28,20 +27,15 @@ class PersonalCarportDetail extends React.Component {
         price: parkingCarSpace.price,
         address: parkingCarSpace.address,
         rentStartDate: moment(parkingCarSpace.rentStartDate).format('yyyy-MM-DD'),
-        rentEndDate: moment(parkingCarSpace.rentEndDate).format('yyyy-MM-DD')
+        rentEndDate: moment(parkingCarSpace.rentEndDate).format('yyyy-MM-DD'),
+        seckill: parkingCarSpace.seckilling
       }}
     )
-    getOrderById(parkingCarSpace.id).then((res)=>{
-      if(res.status === 200){
-        this.setState({
-          parkingLotInfo: res.data.data
-        })
-    }})
   }
 
   confirmBook = () => {
     const bookOrder = {
-      userId: 9,
+      userId: 1,
       parkingId: this.state.parkingLotInfo.id,
       parkingType: 'personal',
       reservationStartTime: this.props.startTime,
@@ -49,6 +43,8 @@ class PersonalCarportDetail extends React.Component {
       status: this.state.parkingLotInfo.status,
       carPort: this.state.parkingLotInfo.personCarport,
       address: this.state.parkingLotInfo.address,
+      latitude: this.props.address.latitude,
+			longitude: this.props.address.longitude,
       totalPrice: 0
     }
     newPersonalBookOrder(bookOrder,this.state.parkingLotInfo.id).then((res) => {
@@ -77,8 +73,12 @@ class PersonalCarportDetail extends React.Component {
 
   confirmSeckill = () => {
     const seckillOrder = {
-      userId: 9,
-      rentId: this.state.parkingLotInfo.id
+      userId: 1,
+      rentId: this.state.parkingLotInfo.id,
+      latitude: this.props.address.latitude,
+      longitude: this.props.address.longitude,
+      reservationStartTime: this.props.startTime,
+      reservationEndTime: this.props.endTime
     }
     newSeckillOrder(seckillOrder).then((res) => {
       if (res.status === 201) {
@@ -93,7 +93,7 @@ class PersonalCarportDetail extends React.Component {
     })
   }
   
-  componentDidUnMount = () => {
+  componentWillUnmount = () => {
     clearInterval(this.interval)
   }
 
@@ -140,14 +140,14 @@ class PersonalCarportDetail extends React.Component {
           <Popconfirm 
             placement="top" 
             title="Are you sure this information is correct ?" 
-            onConfirm={this.state.parkingLotInfo.seckill === 0?
+            onConfirm={this.state.parkingLotInfo.seckill === false?
               this.confirmBook:this.confirmSeckill} 
             okText="Yes" 
             cancelText="No"
             disabled={this.state.isDisabled}
           >
           
-            {this.state.parkingLotInfo.seckill === 0 ? (
+            {this.state.parkingLotInfo.seckill === false ? (
               <Button
                 type="primary" 
                 size="large" 
@@ -180,7 +180,8 @@ PersonalCarportDetail.propTypes = {
 	startTime: PropTypes.number.isRequired,
   endTime: PropTypes.number.isRequired,
   location: PropTypes.objectOf(PropTypes.func).isRequired,
-  history: PropTypes.objectOf(PropTypes.func).isRequired
+  history: PropTypes.objectOf(PropTypes.func).isRequired,
+  address: PropTypes.objectOf(PropTypes.string).isRequired
 }
 
 export default PersonalCarportDetail
