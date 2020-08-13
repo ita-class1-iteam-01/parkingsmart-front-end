@@ -124,10 +124,11 @@ class RentCarportForm extends React.Component{
 
     render() {
         return (
-          <Row>
+          <Row id="motion">
             <Col span={10} offset={7}>
               <Card title="Rent out your carport for a commission" className="rent-card rent-card-title">
                 <Form labelAlign="right" labelCol={{span:4}} ref={this.state.formRef}>
+                  
                   <Form.Item label="Address" name="address" rules={[{required:true, message:"Please type your carport address"}]}>
                     <Row>
                       <Col span={6} className="rent-card-address-city"> 

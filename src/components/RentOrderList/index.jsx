@@ -38,6 +38,7 @@ class RentOrderList extends React.Component {
             Message = (
               <Row 
                 className="row"
+                id="motion"
               >
                 {this.state.rentOrderList.map((rentOrder) => {
                   return (
@@ -57,10 +58,10 @@ class RentOrderList extends React.Component {
                             {rentOrder.contactPerson}
                           </Descriptions.Item>
                           <Descriptions.Item span={3} label="Phone Number">
-                            {rentOrder.contactNumber}
+                          {rentOrder.contactNumber}
                           </Descriptions.Item>
                           <Descriptions.Item span={3} label="Carport Number">
-                            {rentOrder.personCarport}
+                          {rentOrder.personCarport}
                           </Descriptions.Item>
                           <Descriptions.Item span={3} label="Total Price">
                             ￥

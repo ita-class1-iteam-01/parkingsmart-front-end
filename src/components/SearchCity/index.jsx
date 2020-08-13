@@ -45,6 +45,7 @@ class SearchCity extends React.Component {
     >
       {this.state.tips.filter((item) => item.id.length !== 0).map((item) => {
 						return (
+							
   <Option key={item.id} value={item.name} body={item}>
     {item.name}
   </Option>

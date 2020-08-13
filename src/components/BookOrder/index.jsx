@@ -36,6 +36,7 @@ class BookOrder extends React.Component {
       Message = (
         <Row
           className="row"
+          id="motion"
         >
           {this.state.bookOrders.map((bookOrder) => {
             return (

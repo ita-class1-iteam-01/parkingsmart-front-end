@@ -42,6 +42,7 @@ class ParkingLotList extends React.Component {
       Message = (
         <Row
           className="row"
+          id="motion"
         >
           {parkinglots.map((parkinglot) => {
             return (
@@ -102,6 +103,7 @@ class ParkingLotList extends React.Component {
       PersonalParkingPortList = (
         <Row
           className="row"
+          id="motion"
         >
           {personalParkingPortList.map((parkinglot) => {
             return (
